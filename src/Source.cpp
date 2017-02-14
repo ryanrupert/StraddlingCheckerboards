@@ -1,5 +1,6 @@
 #include <iostream>
-#include "unordered_map"
+#include <unordered_map>
+#include <string>
 
 int main()
 {
@@ -14,7 +15,7 @@ int main()
   std::cout << "Please enter a intager for the key id." << std::endl;
   std::cin >> key;
   std::cin.get();
-  mymap.insert (std::make_pair<std::string, int>(input, key));
+  mymap.insert (std::make_pair(input, key));
   std::cout << "This is the output of the map." << std::endl;
   for (const auto& foo : mymap) {
     std::cout << foo.first << ":" << foo.second << std::endl;
