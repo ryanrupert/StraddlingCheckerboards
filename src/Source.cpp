@@ -41,6 +41,8 @@ int main()
   std::string decoded;
   std::string plain;
 
+  //Show the user that this is using the ct1 map
+  std::cout << "CT1:" << std::endl;
   //get user input
   std::cout << "Enter a string to encoded" << std::endl;
   std::cin >> plain;
@@ -60,6 +62,32 @@ int main()
 
   //decode encoded text
   decoded = decode(ct1, encoded);
+
+  //output the decoded text
+  std::cout << "Decoded: " << decoded << std::endl;
+  std::cin.get();
+
+  //show the user that this is using a ct37 map
+  std::cout << "CT37:" << std::endl;
+  //get user input
+  std::cout << "Enter a string to encoded" << std::endl;
+  std::cin >> plain;
+  std::cin.get();
+
+  //encode plain text
+  encoded = encode(ct37, plain);
+
+  //output the encoded text
+  std::cout << "Encoded: " << encoded << std::endl;
+  std::cin.get();
+
+  //get user input
+  std::cout << "Enter a string to decode" << std::endl;
+  std::cin >> encoded;
+  std::cin.get();
+
+  //decode encoded text
+  decoded = decode(ct37, encoded);
 
   //output the decoded text
   std::cout << "Decoded: " << decoded << std::endl;
