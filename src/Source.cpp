@@ -4,23 +4,31 @@
 
 int main()
 {
-  std::unordered_map<std::string, int> mymap = {{"test", 1}, {"test3", 2}};
-  std::string input;
-  int key = 0;
-  std::cout << "This program is a test of maps currently this is" << std::endl;
-  std::cout << "going to be a test of unordered maps" << std::endl;
-  std::cout << "Please enter a string that will be entered into the map." << std::endl;
-  std::cin >> input;
+  std::unordered_map<std::string, std::string> mymap = {{"A","1"},{"B","2"},{"C","3"},{"D","4"},{"E","5"}};
+  std::string encoded;
+  std::string temp;
+  std::string plain;
+  std::unordered_map<std::string, std::string>::const_iterator got;
+  int index = 0;
+  int length = 0;
+
+  std::cout << "Enter a string to encoded" << std::endl;
+  std::cin >> plain;
   std::cin.get();
-  std::cout << "Please enter a intager for the key id." << std::endl;
-  std::cin >> key;
-  std::cin.get();
-  mymap.insert (std::make_pair(input, key));
-  std::cout << "This is the output of the map." << std::endl;
-  for (const auto& foo : mymap) {
-    std::cout << foo.first << ":" << foo.second << std::endl;
+  length = plain.length();
+  std::cout << "length" << length << std::endl;
+  while (index < length)
+  {
+    temp = plain[index];
+    got = mymap.find (temp);
+    temp = got->second;
+    encoded = encoded + temp;
+    std::cout << "telem:" << std::endl;
+    std::cout << "encoded: " << encoded << std::endl;
+    std::cout << "temp: " << temp << std::endl;
+    index++;
   }
-  std::cout << "Is this correct?" << std::endl;
+  std::cout << "Is this correct " << encoded << std::endl;
   std::cin.get();
   return 0;
 }
