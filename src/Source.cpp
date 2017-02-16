@@ -1,41 +1,16 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include "Header.h"
 
 std::string encode(const std::unordered_map<std::string, std::string> & mymap,std::string plain);
 std::string decode(const std::unordered_map<std::string, std::string> & mymap,std::string plain);
-const std::unordered_map<std::string, std::string> ct1 = {{"A","1"},{"B","2"},{"C","3"},{"D","4"},{"E","5"}};
-const std::unordered_map<std::string, std::string> ct37 = {{"B","1"},{"D","2"},{"A","3"},{"E","4"},{"C","5"}};
+const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
+//const std::unordered_map<std::string, std::string> ct1 = {{"A","1"},{"B","2"},{"C","3"},{"D","4"},{"E","5"}};
+//const std::unordered_map<std::string, std::string> ct37 = {{"B","1"},{"D","2"},{"A","3"},{"E","4"},{"C","5"}};
 
 int main()
 {
-  /*std::unordered_map<std::string, std::string> mymap = {{"A","1"},{"B","2"},{"C","3"},{"D","4"},{"E","5"}};
-  std::string encoded;
-  std::string temp;
-  std::string plain;
-  std::unordered_map<std::string, std::string>::const_iterator got;
-  int index = 0;
-  int length = 0;
-
-  std::cout << "Enter a string to encoded" << std::endl;
-  std::cin >> plain;
-  std::cin.get();
-  length = plain.length();
-  std::cout << "length" << length << std::endl;
-  while (index < length)
-  {
-    temp = plain[index];
-    got = mymap.find (temp);
-    temp = got->second;
-    encoded = encoded + temp;
-    std::cout << "telem:" << std::endl;
-    std::cout << "encoded: " << encoded << std::endl;
-    std::cout << "temp: " << temp << std::endl;
-    index++;
-  }
-  std::cout << "Is this correct " << encoded << std::endl;
-  std::cin.get();*/
-
   //declare vars
   std::string encoded;
   std::string decoded;
@@ -98,12 +73,17 @@ int main()
 std::string encode(const std::unordered_map<std::string, std::string> & mymap,std::string plain)
 {
   //declare vars
-  std::string encoded;
-  std::string temp;
-  int index = 0;
-  int length = 0;
+  std::string encoded;  //this will hold the encoded text
+  std::string temp; //this will hold a temp string
+  int index = 0;  //this holds the index position
+  int length = 0; //this will hold the plain text length
+  bool codefound = false; //this holds if a code value was found
+  std::string codevalue;  //this will hold the num code value
+  int codelength = 0; //this will hold the length of the current codeword
   //this declares the iterator for the map
   std::unordered_map<std::string, std::string>::const_iterator got;
+  //this searchs the map to see if code is in there and puts the result in got
+  got = mymap.find("CODE");
 
   //get the plain length
   length = plain.length();
@@ -113,23 +93,56 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
     //this will loop till it has gone through all the letters
     while (index < length)
     {
-      //get the letter at the index position
-      temp = plain.at(index);
-      //find the letter in temp and put in got
-      got = mymap.find (temp);
-      //if end is not found meaning that the search did not reach the end of the
-      //map then
+      //if code was found in the map then
       if(got != mymap.end())
       {
-        //add the number at the second position of got to encoded and place the
-        //result in encoded
-        encoded = encoded + got->second;
-        //add one to index
-        index++;
+        //set codevalue to the value of code
+        codevalue = got->second;
+
+        //this will find if it is a code word
+        for(const auto& foo : code)
+        {
+          //put the length of the current code word in codelength
+          codelength = foo.first.length();
+          //put the string from plain starting at index wih a length of
+          //codelength in temp
+          temp = plain.substr(index, codelength);
+          //if the selected range is equal to the codeword then
+          if(foo.first == temp)
+          {
+            //add codevalue and the value of the codeword te encoded
+            encoded = encoded + codevalue + foo.second;
+            //then set cod found to true
+            codefound = true;
+            //change the index to reflect the new index position
+            index+=codelength;
+            //break out of the loop
+            break;
+          }
+        }
       }
-      //if end was found then throw 5 to protect against issues
-      else
-        throw 5;
+
+      //if a code word was found skip this
+      if(codefound == false)
+      {
+        //get the letter at the index position
+        temp = plain.at(index);
+        //find the letter in temp and put in got
+        got = mymap.find (temp);
+        //if end is not found meaning that the search did not reach the end of the
+        //map then
+        if(got != mymap.end())
+        {
+          //add the number at the second position of got to encoded and place the
+          //result in encoded
+          encoded = encoded + got->second;
+          //add one to index
+          index++;
+        }
+        //if end was found then throw 5 to protect against issues
+        else
+          throw 5;
+      }
     }
   }
   catch(int e)
@@ -144,11 +157,11 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
 std::string decode(const std::unordered_map<std::string, std::string> & mymap,std::string encoded)
 {
   //declare vars
-  std::string decoded;
-  std::string temp;
-  int index = 0;
-  int length = 0;
-  bool notfound = true;
+  std::string decoded;  //this will hold the decoded string
+  std::string temp; //this will hold a temp string
+  int index = 0;  //this will hold the index position
+  int length = 0; //this will hold the length of the encoded text
+  bool notfound = true; //this will hold if a value was notfound
 
   //get the plain length
   length = encoded.length();
@@ -169,21 +182,28 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
           temp = foo.first;
           //put the letter at the location of the map into decoded
           decoded = decoded + temp;
+          //set notfound to false because a letter was found
           notfound = false;
           //then break because no need to loop again the number was found
           break;
         }
+        //if the letter was not found notfound is true
         notfound = true;
       }
+      //if notfound is true then throw an error
       if(notfound == true)
         throw 5;
+      //reset notfound
       notfound = false;
+      //add one to index
       index++;
     }
   }
   catch(int e)
   {
+    //put null in encoded to indicate that a letter was not found in the map
     decoded = "null";
   }
+  //return the encode string
   return decoded;
 }
