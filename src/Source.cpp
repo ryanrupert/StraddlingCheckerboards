@@ -93,6 +93,7 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
     //this will loop till it has gone through all the letters
     while (index < length)
     {
+      //TODO: check to see if the loop works
       //if code was found in the map then
       if(got != mymap.end())
       {
@@ -168,9 +169,12 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
 
   //this is the try statement to get the errors
   try{
+    //TODO: add in the code section here
     //this will loop till it has gone through all the numbers
     while(index < length)
     {
+      //TODO: figure out how to find the values and then get the letters ->
+      //since it is now double digits
       //put the number at index into temp
       temp = encoded.at(index);
       //loop through the map looking for the number
