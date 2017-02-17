@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include <stdlib.h>
 #include "Header.h"
 
 std::string encode(const std::unordered_map<std::string, std::string> & mymap,std::string plain);
@@ -162,10 +163,23 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   std::string temp; //this will hold a temp string
   int index = 0;  //this will hold the index position
   int length = 0; //this will hold the length of the encoded text
+  int singlelimit = 0;  //this will hold the single digit limit for the map values
+  int tempint = 0;  //this will hold the current num of the index from the string
   bool notfound = true; //this will hold if a value was notfound
+  //this declares the iterator
+  std::unordered_map<std::string, std::string>::const_iterator got;
 
   //get the plain length
   length = encoded.length();
+
+  got = ct1.find("CONTROL");
+  if(got != ct1.end())
+  {
+    temp = got->second;
+    singlelimit = atoi(temp.c_str());
+  }
+  else
+    throw 5;
 
   //this is the try statement to get the errors
   try{
@@ -173,32 +187,60 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
     //this will loop till it has gone through all the numbers
     while(index < length)
     {
+      temp = encoded.at(index);
+      tempint = atoi(temp.c_str());
       //TODO: figure out how to find the values and then get the letters ->
       //since it is now double digits
       //put the number at index into temp
-      temp = encoded.at(index);
-      //loop through the map looking for the number
-      for (const auto& foo : mymap)
+      if(tempint >= 0 && tempint <= singlelimit)
       {
-        //if the map number equals temp
-        if(foo.second == temp)
+        temp = encoded.at(index);
+        //loop through the map looking for the number
+        for (const auto& foo : mymap)
         {
-          temp = foo.first;
-          //put the letter at the location of the map into decoded
-          decoded = decoded + temp;
-          //set notfound to false because a letter was found
-          notfound = false;
-          //then break because no need to loop again the number was found
-          break;
+          //if the map number equals temp
+          if(foo.second == temp)
+          {
+            temp = foo.first;
+            //put the letter at the location of the map into decoded
+            decoded = decoded + temp;
+            //set notfound to false because a letter was found
+            notfound = false;
+            //then break because no need to loop again the number was found
+            break;
+          }
+          //if the letter was not found notfound is true
+          notfound = true;
         }
-        //if the letter was not found notfound is true
-        notfound = true;
       }
-      //if notfound is true then throw an error
-      if(notfound == true)
+      else if(tempint >= singlelimit++ && tempint <= 99)
+      {
+        temp = encoded.substr(index,2);
+        //loop through the map looking for the number
+        for (const auto& foo : mymap)
+        {
+          //if the map number equals temp
+          if(foo.second == temp)
+          {
+            temp = foo.first;
+            //put the letter at the location of the map into decoded
+            decoded = decoded + temp;
+            //set notfound to false because a letter was found
+            notfound = false;
+            //then break because no need to loop again the number was found
+            break;
+          }
+          //if the letter was not found notfound is true
+          notfound = true;
+        }
+        //if notfound is true then throw an error
+        if(notfound == true)
+          throw 5;
+        //reset notfound
+        notfound = false;
+      }
+      else
         throw 5;
-      //reset notfound
-      notfound = false;
       //add one to index
       index++;
     }

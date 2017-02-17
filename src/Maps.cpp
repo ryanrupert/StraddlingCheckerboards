@@ -1,6 +1,6 @@
 #include "Header.h"
 const std::unordered_map<std::string, std::string> ct1 = {
-  {"COE","0"},
+  {"CODE","0"},
   {"A","1"},
   {"E","2"},
   {"I","3"},
