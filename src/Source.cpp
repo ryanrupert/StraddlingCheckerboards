@@ -211,6 +211,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
           }
           //if the letter was not found notfound is true
           notfound = true;
+          index+=2;
         }
       }
       else if(tempint >= singlelimit++ && tempint <= 99)
@@ -238,11 +239,11 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
           throw 5;
         //reset notfound
         notfound = false;
+        //add one to index
+        index++;
       }
       else
         throw 5;
-      //add one to index
-      index++;
     }
   }
   catch(int e)
