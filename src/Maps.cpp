@@ -1,5 +1,6 @@
 #include "Header.h"
 const std::unordered_map<std::string, std::string> ct1 = {
+  {"CONTROL","6"},
   {"CODE","0"},
   {"A","1"},
   {"E","2"},
@@ -42,6 +43,7 @@ const std::unordered_map<std::string, std::string> ct1 = {
 
 
 const std::unordered_map<std::string, std::string> ct37 = {
+  {"CONTROL","6"},
   {"E","0"},
   {"S","1"},
   {"T","2"},

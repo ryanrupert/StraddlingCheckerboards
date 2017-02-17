@@ -189,8 +189,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
     {
       temp = encoded.at(index);
       tempint = atoi(temp.c_str());
-      //TODO: figure out how to find the values and then get the letters ->
-      //since it is now double digits
+      //TODO: test to see if double digits work
       //put the number at index into temp
       if(tempint >= 0 && tempint <= singlelimit)
       {
