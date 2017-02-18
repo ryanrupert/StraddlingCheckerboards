@@ -21,8 +21,7 @@ int main()
   std::cout << "CT1:" << std::endl;
   //get user input
   std::cout << "Enter a string to encoded" << std::endl;
-  std::cin >> plain;
-  std::cin.get();
+  std::getline(std::cin, plain);
 
   //encode plain text
   encoded = encode(ct1, plain);
@@ -33,8 +32,7 @@ int main()
 
   //get user input
   std::cout << "Enter a string to decode" << std::endl;
-  std::cin >> encoded;
-  std::cin.get();
+  std::getline(std::cin, encoded);
 
   //decode encoded text
   decoded = decode(ct1, encoded);
@@ -47,8 +45,7 @@ int main()
   std::cout << "CT37:" << std::endl;
   //get user input
   std::cout << "Enter a string to encoded" << std::endl;
-  std::cin >> plain;
-  std::cin.get();
+  std::getline(std::cin, plain);
 
   //encode plain text
   encoded = encode(ct37, plain);
@@ -59,8 +56,7 @@ int main()
 
   //get user input
   std::cout << "Enter a string to decode" << std::endl;
-  std::cin >> encoded;
-  std::cin.get();
+  std::getline(std::cin, encoded);
 
   //decode encoded text
   decoded = decode(ct37, encoded);
@@ -85,7 +81,8 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
   std::unordered_map<std::string, std::string>::const_iterator got;
   //this searchs the map to see if code is in there and puts the result in got
   got = mymap.find("CODE");
-
+  if(got != mymap.end())
+    codevalue = got->second;
   //get the plain length
   length = plain.length();
 
@@ -96,31 +93,25 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
     {
       //TODO: check to see if the loop works
       //if code was found in the map then
-      if(got != mymap.end())
+      //this will find if it is a code word
+      for(const auto& foo : code)
       {
-        //set codevalue to the value of code
-        codevalue = got->second;
-
-        //this will find if it is a code word
-        for(const auto& foo : code)
+        //put the length of the current code word in codelength
+        codelength = foo.first.length();
+        //put the string from plain starting at index wih a length of
+        //codelength in temp
+        temp = plain.substr(index, codelength);
+        //if the selected range is equal to the codeword then
+        if(foo.first == temp)
         {
-          //put the length of the current code word in codelength
-          codelength = foo.first.length();
-          //put the string from plain starting at index wih a length of
-          //codelength in temp
-          temp = plain.substr(index, codelength);
-          //if the selected range is equal to the codeword then
-          if(foo.first == temp)
-          {
-            //add codevalue and the value of the codeword te encoded
-            encoded = encoded + codevalue + foo.second;
-            //then set cod found to true
-            codefound = true;
-            //change the index to reflect the new index position
-            index+=codelength;
-            //break out of the loop
-            break;
-          }
+          //add codevalue and the value of the codeword te encoded
+          encoded = encoded + codevalue + foo.second;
+          //then set cod found to true
+          codefound = true;
+          //change the index to reflect the new index position
+          index+=codelength;
+          //break out of the loop
+          break;
         }
       }
 
@@ -145,6 +136,7 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
         else
           throw 5;
       }
+      codefound = false;
     }
   }
   catch(int e)
@@ -189,11 +181,13 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
     {
       temp = encoded.at(index);
       tempint = atoi(temp.c_str());
+      std::cout << "tempint: " << tempint << std::endl;
       //TODO: test to see if double digits work
       //put the number at index into temp
       if(tempint >= 0 && tempint <= singlelimit)
       {
         temp = encoded.at(index);
+        std::cout << "single: " << temp << std::endl;
         //loop through the map looking for the number
         for (const auto& foo : mymap)
         {
@@ -210,12 +204,18 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
           }
           //if the letter was not found notfound is true
           notfound = true;
-          index+=2;
         }
+        //if notfound is true then throw an error
+        if(notfound == true)
+          throw 5;
+        //reset notfound
+        notfound = false;
+        index++;
       }
       else if(tempint >= singlelimit++ && tempint <= 99)
       {
         temp = encoded.substr(index,2);
+        std::cout << "double: " << temp << std::endl;
         //loop through the map looking for the number
         for (const auto& foo : mymap)
         {
@@ -239,7 +239,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
         //reset notfound
         notfound = false;
         //add one to index
-        index++;
+        index+=2;
       }
       else
         throw 5;
