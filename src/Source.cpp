@@ -156,6 +156,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   int index = 0;  //this will hold the index position
   int length = 0; //this will hold the length of the encoded text
   int singlelimit = 0;  //this will hold the single digit limit for the map values
+  int singlelimitmod = 0; //this is the modified singlelimit
   int tempint = 0;  //this will hold the current num of the index from the string
   bool notfound = true; //this will hold if a value was notfound
   //this declares the iterator
@@ -164,12 +165,18 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   //get the plain length
   length = encoded.length();
 
+  //this finds the control key for the number at wich single digits stop
   got = ct1.find("CONTROL");
+  //if control is found then
   if(got != ct1.end())
   {
-    temp = got->second;
-    singlelimit = atoi(temp.c_str());
+    //the value at got is turned to a c string then turned to a number and put
+    //in singlelimit
+    singlelimit = atoi(got->second.c_str());
+    //add one to singlelimit then place it in singlelimitmod
+    singlelimitmod = singlelimit + 1;
   }
+  //if control is not found then throw an error
   else
     throw 5;
 
@@ -179,13 +186,16 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
     //this will loop till it has gone through all the numbers
     while(index < length)
     {
+      //put the value at the index position in temp
       temp = encoded.at(index);
+      //turn temp to c string then turn to a number and place in tempint
       tempint = atoi(temp.c_str());
       std::cout << "tempint: " << tempint << std::endl;
       //TODO: test to see if double digits work
       //put the number at index into temp
       if(tempint >= 0 && tempint <= singlelimit)
       {
+        //put the value at index in temp
         temp = encoded.at(index);
         std::cout << "single: " << temp << std::endl;
         //loop through the map looking for the number
@@ -212,8 +222,9 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
         notfound = false;
         index++;
       }
-      else if(tempint >= singlelimit++ && tempint <= 99)
+      else if(tempint >= singlelimitmod && tempint <= 99)
       {
+        //put the value at index at temp
         temp = encoded.substr(index,2);
         std::cout << "double: " << temp << std::endl;
         //loop through the map looking for the number
