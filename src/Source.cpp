@@ -201,10 +201,8 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   else
     codefound = false;
 
-  if((codevalueint >= 0) && (codevalueint <= 9))
-    codedouble = false;
-  else if(codevalueint > 9)
-    codedouble = true;
+  //if the codevalueint is a double digit number then set codedouble to true else false
+  codedouble = ((codevalueint >= 0) && (codevalueint <= 9)) ? false : (codevalueint > 9) ? true : false;
 
   //this is the try statement to get the errors
   try{
