@@ -214,10 +214,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
     {
       //put the value at the index position in temp dependent on if the code
       //value is double
-      if(codedouble == false)
-        temp = encoded.at(index);
-      else if(codedouble == true)
-        temp = encoded.substr(index, 2);
+      (codedouble == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
       //turn temp to c string then turn to a number and place in tempint
       tempint = atoi(temp.c_str());
 
