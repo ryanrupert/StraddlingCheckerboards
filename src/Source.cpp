@@ -240,11 +240,8 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
           //if the map number equals temp
           if(foo.second == temp)
           {
-            //put the string at foo second in temp
-            temp = foo.first;
-
             //put the letter at the location of the map into decoded
-            decoded = decoded + temp;
+            decoded = decoded + foo.first;
 
             //set notfound to false because a letter was found
             notfound = false;
@@ -282,11 +279,8 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
             //if the map number equals temp
             if(foo.second == temp)
             {
-              //put the string at foo second in temp
-              temp = foo.first;
-
               //put the letter at the location of the map into decoded
-              decoded = decoded + temp;
+              decoded = decoded + foo.first;
 
               //set notfound to false because a letter was found
               notfound = false;
@@ -318,11 +312,8 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
             //if the map number equals temp
             if(foo.second == temp)
             {
-              //put the string at foo second in temp
-              temp = foo.first;
-
               //put the letter at the location of the map into decoded
-              decoded = decoded + temp;
+              decoded = decoded + foo.first;
 
               //set notfound to false because a letter was found
               notfound = false;
