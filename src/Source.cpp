@@ -161,6 +161,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   std::string codevalue;  //this will hold the code value
   bool codefound = false; //this will hold if code was found in the encode map
   int codevalueint = 0; //this will hold he code value as an int
+  bool codedouble = false;  //this will hold if code is a double digit
   //this declares the iterator
   std::unordered_map<std::string, std::string>::const_iterator got;
 
@@ -198,6 +199,11 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   else
     codefound = false;
 
+  if((codevalueint >= 0) && (codevalueint <= 9))
+    codedouble = false;
+  else if(codevalueint > 9)
+    codedouble = true;
+
   //this is the try statement to get the errors
   try{
     //TODO: add in the code section here
@@ -205,14 +211,20 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
     while(index < length)
     {
       //put the value at the index position in temp
-      temp = encoded.at(index);
+      if(codedouble == false)
+        temp = encoded.at(index);
+      else if(codedouble == true)
+        temp = encoded.substr(index, 2);
       //turn temp to c string then turn to a number and place in tempint
       tempint = atoi(temp.c_str());
       //put the number at index into temp
       if((codevalueint == tempint) && (codefound == true))
       {
         //add one to index
-        index++;
+        if(codedouble == false)
+          index++;
+        else if(codedouble ==true)
+          index+=2;
         //put the values in encoded at index with range of three to temp
         temp = encoded.substr(index, 3);
         //loop through the map looking for the number
@@ -238,66 +250,71 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
         //add three to index
         index+=3;
       }
-      else if((tempint >= 0) && (tempint <= singlelimit))
-      {
-        //put the value at index in temp
-        temp = encoded.at(index);
-        //loop through the map looking for the number
-        for (const auto& foo : mymap)
-        {
-          //if the map number equals temp
-          if(foo.second == temp)
-          {
-            temp = foo.first;
-            //put the letter at the location of the map into decoded
-            decoded = decoded + temp;
-            //set notfound to false because a letter was found
-            notfound = false;
-            //then break because no need to loop again the number was found
-            break;
-          }
-          //if the letter was not found notfound is true
-          notfound = true;
-        }
-        //if notfound is true then throw an error
-        if(notfound == true)
-          throw 5;
-        //reset notfound
-        notfound = false;
-        //add one to index
-        index++;
-      }
-      else if((tempint >= singlelimitmod) && (tempint <= 99))
-      {
-        //put the value at index at temp
-        temp = encoded.substr(index,2);
-        //loop through the map looking for the number
-        for (const auto& foo : mymap)
-        {
-          //if the map number equals temp
-          if(foo.second == temp)
-          {
-            temp = foo.first;
-            //put the letter at the location of the map into decoded
-            decoded = decoded + temp;
-            //set notfound to false because a letter was found
-            notfound = false;
-            //then break because no need to loop again the number was found
-            break;
-          }
-          //if the letter was not found notfound is true
-          notfound = true;
-        }
-        //if notfound is true then throw an error
-        if(notfound == true)
-          throw 5;
-        //reset notfound
-        notfound = false;
-        //add two to index
-        index+=2;
-      }
       else
-        throw 5;
+      {
+        temp = encoded.at(index);
+        tempint = atoi(temp.c_str());
+        if((tempint >= 0) && (tempint <= singlelimit))
+        {
+          //put the value at index in temp
+          temp = encoded.at(index);
+          //loop through the map looking for the number
+          for (const auto& foo : mymap)
+          {
+            //if the map number equals temp
+            if(foo.second == temp)
+            {
+              temp = foo.first;
+              //put the letter at the location of the map into decoded
+              decoded = decoded + temp;
+              //set notfound to false because a letter was found
+              notfound = false;
+              //then break because no need to loop again the number was found
+              break;
+            }
+            //if the letter was not found notfound is true
+            notfound = true;
+          }
+          //if notfound is true then throw an error
+          if(notfound == true)
+            throw 5;
+          //reset notfound
+          notfound = false;
+          //add one to index
+          index++;
+        }
+        else if((tempint >= singlelimitmod) && (tempint <= 99))
+        {
+          //put the value at index at temp
+          temp = encoded.substr(index,2);
+          //loop through the map looking for the number
+          for (const auto& foo : mymap)
+          {
+            //if the map number equals temp
+            if(foo.second == temp)
+            {
+              temp = foo.first;
+              //put the letter at the location of the map into decoded
+              decoded = decoded + temp;
+              //set notfound to false because a letter was found
+              notfound = false;
+              //then break because no need to loop again the number was found
+              break;
+            }
+            //if the letter was not found notfound is true
+            notfound = true;
+          }
+          //if notfound is true then throw an error
+          if(notfound == true)
+            throw 5;
+          //reset notfound
+          notfound = false;
+          //add two to index
+          index+=2;
+        }
+        else
+          throw 5;
+      }
     }
   }
   catch(int e)
