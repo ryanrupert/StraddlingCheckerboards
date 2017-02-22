@@ -164,6 +164,10 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   bool codefound = false; //this will hold if code was found in the encode map
   int codevalueint = 0; //this will hold he code value as an int
   bool codedouble = false;  //this will hold if code is a double digit
+  bool parinthfound = false;  //this will hold if a parinthase was found
+  int parinthvalueint = 0;  //this will hold the value of a parithase in int
+  std::string parinthasevalue; //this will hold the value of papinthase
+  bool parinthIsOpen = false; //this will hold if the parinthase is open or not
   //this declares the iterator
   std::unordered_map<std::string, std::string>::const_iterator got;
 
@@ -204,6 +208,22 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   //if the codevalueint is a double digit number then set codedouble to true else false
   codedouble = ((codevalueint >= 0) && (codevalueint <= 9)) ? false : (codevalueint > 9) ? true : false;
 
+  //find if the encoded map has parinthasis
+  got = mymap.find("(");
+  //if it does then
+  if (got != mymap.end())
+  {
+    //put the value of code in codevalue
+    parinthasevalue = got->second;
+    //put the intiger value of code in codevalueint
+    parinthvalueint = atoi(got->second.c_str());
+    //set code found to true
+    parinthfound = true;
+  }
+  //if code was not found then set codefound to false
+  else
+    parinthfound = false;
+
   //this is the try statement to get the errors
   try{
     //TODO: add in the code section here
@@ -213,47 +233,57 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
       //put the value at the index position in temp dependent on if the code
       //value is double
       (codedouble == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
+      (parinthfound == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
       //turn temp to c string then turn to a number and place in tempint
       tempint = atoi(temp.c_str());
 
-      //if codevalueint is equal to tempint and a code value was found then
-      if((codevalueint == tempint) && (codefound == true))
+      //if any of the special cases is true then do what is in the if
+      if(((codevalueint == tempint) && (codefound == true)) || ((parinthfound == true) && (parinthvalueint == tempint)))
       {
-        //add one to index if code is a single digit
-        if(codedouble == false)
-          index++;
-        //add two to index if code is a double digit
-        else if(codedouble ==true)
-          index+=2;
-
-        //put the values in encoded at index with range of three to temp
-        temp = encoded.substr(index, 3);
-
-        //loop through the map looking for the number
-        for (const auto& foo : code)
+        if((codevalueint == tempint) && (codefound == true))
         {
-          //if the map number equals temp
-          if(foo.second == temp)
+          //add one to index if code is a single digit
+          if(codedouble == false)
+            index++;
+          //add two to index if code is a double digit
+          else if(codedouble ==true)
+            index+=2;
+
+          //put the values in encoded at index with range of three to temp
+          temp = encoded.substr(index, 3);
+
+          //loop through the map looking for the number
+          for (const auto& foo : code)
           {
-            //put the letter at the location of the map into decoded
-            decoded = decoded + foo.first;
+            //if the map number equals temp
+            if(foo.second == temp)
+            {
+              //put the letter at the location of the map into decoded
+              decoded = decoded + foo.first;
 
-            //set notfound to false because a letter was found
-            notfound = false;
+              //set notfound to false because a letter was found
+              notfound = false;
 
-            //then break because no need to loop again the number was found
-            break;
+              //then break because no need to loop again the number was found
+              break;
+            }
           }
+          //if notfound is true then throw an error
+          if(notfound == true)
+            throw 5;
+
+          //reset notfound
+          notfound = false;
+
+          //add three to index
+          index+=3;
         }
-        //if notfound is true then throw an error
-        if(notfound == true)
-          throw 5;
-
-        //reset notfound
-        notfound = false;
-
-        //add three to index
-        index+=3;
+        else if((parinthfound == true) && (parinthvalueint == tempint))
+        {
+          decoded = (parinthIsOpen == false) ? decoded + "(" : decoded + ")";
+          parinthIsOpen = (parinthIsOpen == false) ? true : false;
+          index+=2;
+        }
       }
       else
       {
