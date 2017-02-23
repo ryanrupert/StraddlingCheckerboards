@@ -69,8 +69,10 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
   int index = 0;  //this holds the index position
   int length = 0; //this will hold the plain text length
   bool codefound = false; //this holds if a code value was found
-  std::string codevalue;  //this will hold the num code value
+  std::string codevalue = "null";  //this will hold the num code value
   int codelength = 0; //this will hold the length of the current codeword
+  std::string figvalue = "null"; //this will hold the value of fig
+  bool figfound = false;  //this will hold if a figure was found
   //this declares the iterator for the map
   std::unordered_map<std::string, std::string>::const_iterator got;
 
@@ -78,6 +80,10 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
   got = mymap.find("CODE");
   if(got != mymap.end())
     codevalue = got->second;
+
+  got = mymap.find("FIG");
+  if(got != mymap.end())
+    figvalue = got->second;
 
   //get the plain length
   length = plain.length();
@@ -87,35 +93,49 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
     //this will loop till it has gone through all the letters
     while (index < length)
     {
+      if (plain.at(index) >= 0 || plain.at(index) <= 9)
+      {
+        encoded = encoded + figvalue;
+        while (plain.at(index) >= 0 || plain.at(index) <= 9)
+        {
+          encoded = encoded + plain.at(index) + plain.at(index) + plain.at(index);
+          index++;
+        }
+        encoded = encoded + figvalue;
+        figfound = true;
+      }
       //if code was found in the map then
       //this will find if it is a code word
-      for(const auto& foo : code)
+      else if(codevalue != "null" && figfound != true)
       {
-        //put the length of the current code word in codelength
-        codelength = foo.first.length();
-        //put the string from plain starting at index wih a length of
-        //codelength in temp
-        temp = plain.substr(index, codelength);
-
-        //if the selected range is equal to the codeword then
-        if(foo.first == temp)
+        for(const auto& foo : code)
         {
-          //add codevalue and the value of the codeword te encoded
-          encoded = encoded + codevalue + foo.second;
+          //put the length of the current code word in codelength
+          codelength = foo.first.length();
+          //put the string from plain starting at index wih a length of
+          //codelength in temp
+          temp = plain.substr(index, codelength);
 
-          //then set cod found to true
-          codefound = true;
+          //if the selected range is equal to the codeword then
+          if(foo.first == temp)
+          {
+            //add codevalue and the value of the codeword te encoded
+            encoded = encoded + codevalue + foo.second;
 
-          //change the index to reflect the new index position
-          index+=codelength;
+            //then set cod found to true
+            codefound = true;
 
-          //break out of the loop
-          break;
+            //change the index to reflect the new index position
+            index+=codelength;
+
+            //break out of the loop
+            break;
+          }
         }
       }
 
       //if a code word was found skip this
-      if(codefound == false)
+      else if(codefound == false && figfound == false)
       {
         //get the letter at the index position
         temp = plain.at(index);
@@ -138,6 +158,7 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
           throw 5;
       }
       codefound = false;
+      figfound = false;
     }
   }
   catch(int e)
