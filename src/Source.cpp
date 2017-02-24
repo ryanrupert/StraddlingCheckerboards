@@ -96,7 +96,7 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
       if (std::isdigit(plain.at(index)))
       {
         encoded = encoded + figvalue;
-        while (plain.at(index) >= 0 || plain.at(index) <= 9)
+        while (std::isdigit(plain.at(index)))
         {
           encoded = encoded + plain.at(index) + plain.at(index) + plain.at(index);
           index++;
@@ -136,7 +136,7 @@ std::string encode(const std::unordered_map<std::string, std::string> & mymap,st
       }
 
       //if a code word was found and a figure was found skip this
-      else if(codefound != false && figfound != false)
+      if(codefound == false && figfound == false)
       {
         //get the letter at the index position
         temp = plain.at(index);
