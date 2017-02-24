@@ -1,0 +1,250 @@
+(gdb) Temporary breakpoint 2 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 6332.0xdec]
+
+Temporary breakpoint 2, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+[New Thread 6332.0x2e88]
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) 96	      if (std::isdigit(plain.at(index)))
+(gdb) 110	      else if(codevalue != "null" && !figfound == true)
+(gdb) $1 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fc8c "0"}, 
+  _M_string_length = 1, {
+    _M_local_buf = "0\000ll\000\000\000\000\000\000\000\000Èüg", 
+    _M_allocated_capacity = 1819017264}}
+(gdb) $2 = false
+(gdb) A debugging session is active.
+
+	Inferior 1 [process 6332] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
+error return ../../gdb-7.6.1/gdb/windows-nat.c:1275 was 5
+(gdb) Temporary breakpoint 2 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 11776.0x1444]
+
+Temporary breakpoint 2, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) 96	      if (std::isdigit(plain.at(index)))
+(gdb) 110	      else if(codevalue != "null" && !figfound != true)
+(gdb) 139	      else if(codefound == false && figfound == false)
+(gdb) A debugging session is active.
+
+	Inferior 1 [process 11776] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
+(gdb) Temporary breakpoint 3 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 11980.0x2e68]
+
+Temporary breakpoint 3, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) 96	      if (std::isdigit(plain.at(index)))
+(gdb) 110	      else if(codevalue != "null" && figfound != true)
+(gdb) 112	        for(const auto& foo : code)
+(gdb) 115	          codelength = foo.first.length();
+(gdb) 118	          temp = plain.substr(index, codelength);
+(gdb) $1 = 5
+(gdb) $2 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fca4 ""}, 
+  _M_string_length = 0, {
+    _M_local_buf = "\000\022@\000Èüg\000\000Hêo°¤\033\002", 
+    _M_allocated_capacity = 4198912}}
+(gdb) 121	          if(foo.first == temp)
+(gdb) $3 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fca4 "TEST "}, 
+  _M_string_length = 5, {_M_local_buf = "TEST \000ëo\200þg\000$ëïo", 
+    _M_allocated_capacity = 1414743380}}
+(gdb) 112	        for(const auto& foo : code)
+(gdb) 115	          codelength = foo.first.length();
+(gdb) 118	          temp = plain.substr(index, codelength);
+(gdb) 121	          if(foo.first == temp)
+(gdb) $4 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fca4 "TEST ("}, 
+  _M_string_length = 6, {_M_local_buf = "TEST (\000o\200þg\000$ëïo", 
+    _M_allocated_capacity = 1414743380}}
+(gdb) $5 = 6
+(gdb) 112	        for(const auto& foo : code)
+(gdb) 115	          codelength = foo.first.length();
+(gdb) 118	          temp = plain.substr(index, codelength);
+(gdb) 121	          if(foo.first == temp)
+(gdb) 112	        for(const auto& foo : code)
+(gdb) 115	          codelength = foo.first.length();
+(gdb) 118	          temp = plain.substr(index, codelength);
+(gdb) 121	          if(foo.first == temp)
+(gdb) 112	        for(const auto& foo : code)
+(gdb) 115	          codelength = foo.first.length();
+(gdb) 118	          temp = plain.substr(index, codelength);
+(gdb) 121	          if(foo.first == temp)
+(gdb) 112	        for(const auto& foo : code)
+(gdb) 161	      codefound = false;
+(gdb) 162	      figfound = false;
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+[New Thread 11980.0x1f30]
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) $6 = 24
+(gdb) $7 = 0
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) A debugging session is active.
+
+	Inferior 1 [process 11980] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
+error return ../../gdb-7.6.1/gdb/windows-nat.c:1275 was 5

@@ -29,7 +29,7 @@ $(LIBDIR)/%.o: $(LIBDIR)/%.cpp
 	$(CC) $(CFLAG) -I$(LIBDIR) $< -o $@
 
 debug: CFLAG += -g
-debug: all
+debug: clean all
 
 .PHONY: clean
 

@@ -1,0 +1,45 @@
+(gdb) Temporary breakpoint 2 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 4280.0x2f0]
+
+Temporary breakpoint 2, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, encode (mymap=..., plain=...) at src/Source.cpp:94
+94	    while (index < length)
+(gdb) $1 = 0
+(gdb) $2 = 24
+(gdb) 96	      if (plain.at(index) >= 0 || plain.at(index) <= 9)
+(gdb) $3 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, 
+    _M_p = 0x7aa4b0 "TEST (ABORT) (TEST) TE3T"}, _M_string_length = 24, {
+    _M_local_buf = "\030\000\000\000\200\fz\000fç¼wWÐ»w", 
+    _M_allocated_capacity = 24}}
+(gdb) 98	        encoded = encoded + figvalue;
+(gdb) $4 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fe68 ""}, 
+  _M_string_length = 0, {
+    _M_local_buf = "\000þg\000^u\215w\000\000z\000\000\000\000", 
+    _M_allocated_capacity = 6815232}}
+(gdb) 99	        while (plain.at(index) >= 0 || plain.at(index) <= 9)
+(gdb) $5 = 0
+(gdb) 101	          encoded = encoded + plain.at(index) + plain.at(index) + plain.at(index);
+(gdb) $6 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fe68 "90"}, 
+  _M_string_length = 2, {_M_local_buf = "90\000\000xþg\000Hýg\000/8ío", 
+    _M_allocated_capacity = 12345}}
+(gdb) $7 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fc74 "90"}, 
+  _M_string_length = 2, {_M_local_buf = "90\000l\000üg\000j[ìo\n\000\000", 
+    _M_allocated_capacity = 1811951673}}
+(gdb) 102	          index++;
+(gdb) $8 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fe68 "90TTT"}, 
+  _M_string_length = 5, {_M_local_buf = "90TTT\000íox¤z\000\220¤z", 
+    _M_allocated_capacity = 1414803513}}
+(gdb) A debugging session is active.
+
+	Inferior 1 [process 4280] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
