@@ -1,0 +1,167 @@
+(gdb) Temporary breakpoint 3 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 3692.0x2de0]
+
+Temporary breakpoint 3, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, decode (mymap=..., encoded=...) at src/Source.cpp:177
+177	  std::string decoded;  //this will hold the decoded string
+(gdb) Continuing.
+
+Breakpoint 2, _fu19___ZTIi () at src/Source.cpp:278
+278	        index+=2;
+(gdb) 283	          temp = encoded.substr(index, 3);
+(gdb) 284	          tempcomp[0] = temp.at(0);
+(gdb) $1 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fbe0 "333"}, 
+  _M_string_length = 3, {
+    _M_local_buf = "333\000\000\000\000\000Èüg\000\200áïo", 
+    _M_allocated_capacity = 3355443}}
+(gdb) 285	          tempcomp[1] = temp.at(1);
+(gdb) $2 = {51, 0}
+(gdb) 286	          tempcomp[2] = temp.at(2);
+(gdb) $3 = {51, 51}
+(gdb) 288	          if ( (tempcomp[1] == tempcomp[2]) && (tempcomp[2] == tempcomp[3]) && (tempcomp[1] == tempcomp[3]) )
+(gdb) $4 = {51, 51}
+(gdb) A debugging session is active.
+
+	Inferior 1 [process 3692] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
+(gdb) Temporary breakpoint 3 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 1952.0x1c04]
+
+Temporary breakpoint 3, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, decode (mymap=..., encoded=...) at src/Source.cpp:177
+177	  std::string decoded;  //this will hold the decoded string
+(gdb) Continuing.
+
+Breakpoint 2, _fu19___ZTIi () at src/Source.cpp:278
+278	        index+=2;
+(gdb) 283	          temp = encoded.substr(index, 3);
+(gdb) 284	          tempcomp[1] = temp.at(1);
+(gdb) 285	          tempcomp[2] = temp.at(2);
+(gdb) 286	          tempcomp[3] = temp.at(3);
+(gdb) 
+Breakpoint 1, decode (mymap=..., encoded=...) at src/Source.cpp:177
+177	  std::string decoded;  //this will hold the decoded string
+(gdb) A debugging session is active.
+
+	Inferior 1 [process 1952] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
+(gdb) Temporary breakpoint 3 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 11868.0xde8]
+
+Temporary breakpoint 3, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, decode (mymap=..., encoded=...) at src/Source.cpp:177
+177	  std::string decoded;  //this will hold the decoded string
+(gdb) Continuing.
+[New Thread 11868.0x22a0]
+
+Breakpoint 2, _fu19___ZTIi () at src/Source.cpp:278
+278	        index+=2;
+(gdb) 283	          temp = encoded.substr(index, 3);
+(gdb) 284	          tempcomp[1] = temp.at(1);
+(gdb) 285	          tempcomp[2] = temp.at(2);
+(gdb) $1 = {0, 51, 0}
+(gdb) 286	          tempcomp[3] = temp.at(3);
+(gdb) (gdb) Temporary breakpoint 3 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 3996.0x1038]
+
+Temporary breakpoint 3, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, decode (mymap=..., encoded=...) at src/Source.cpp:177
+177	  std::string decoded;  //this will hold the decoded string
+(gdb) 178	  std::string temp; //this will hold a temp string
+(gdb) Continuing.
+
+Breakpoint 2, _fu19___ZTIi () at src/Source.cpp:278
+278	        index+=2;
+(gdb) $1 = 38
+(gdb) $2 = 30
+(gdb) 283	          temp = encoded.substr(index, 3);
+(gdb) $3 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fbe0 "90"}, 
+  _M_string_length = 2, {_M_local_buf = "90\000\000j[ìo\n\000\000\000¨þg", 
+    _M_allocated_capacity = 12345}}
+(gdb) 284	          tempcomp[0] = temp.at(0);
+(gdb) $4 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fbe0 "333"}, 
+  _M_string_length = 3, {
+    _M_local_buf = "333\000\000\000\000\000Èüg\000\200áïo", 
+    _M_allocated_capacity = 3355443}}
+(gdb) $5 = 32
+(gdb) $6 = 38
+(gdb) 285	          tempcomp[1] = temp.at(1);
+(gdb) 286	          tempcomp[2] = temp.at(2);
+(gdb) 288	          if ( (tempcomp[1] == tempcomp[2]) && (tempcomp[2] == tempcomp[3]) && (tempcomp[1] == tempcomp[3]) )
+(gdb) 296	      }
+(gdb) (gdb) Temporary breakpoint 3 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 12100.0x2ed8]
+
+Temporary breakpoint 3, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, decode (mymap=..., encoded=...) at src/Source.cpp:177
+177	  std::string decoded;  //this will hold the decoded string
+(gdb) 178	  std::string temp; //this will hold a temp string
+(gdb) 179	  int index = 0;  //this will hold the index position
+(gdb) 180	  int length = 0; //this will hold the length of the encoded text
+(gdb) 181	  int singlelimit = 0;  //this will hold the single digit limit for the map values
+(gdb) 182	  int singlelimitmod = 0; //this is the modified singlelimit
+(gdb) 183	  int tempint = 0;  //this will hold the current num of the index from the string
+(gdb) 184	  bool notfound = true; //this will hold if a value was notfound
+(gdb) 185	  std::string codevalue;  //this will hold the code value
+(gdb) 186	  bool codefound = false; //this will hold if code was found in the encode map
+(gdb) 187	  int codevalueint = 0; //this will hold he code value as an int
+(gdb) 188	  bool codedouble = false;  //this will hold if code is a double digit
+(gdb) 189	  bool parinthfound = false;  //this will hold if a parinthase was found
+(gdb) 190	  int parinthvalueint = 0;  //this will hold the value of a parithase in int
+(gdb) 191	  std::string parinthasevalue; //this will hold the value of papinthase
+(gdb) 192	  bool parinthIsOpen = false; //this will hold if the parinthase is open or not
+(gdb) 193	  std::string figvalue; //this will hold the value of fig
+(gdb) 194	  int figvalueint = 0;  //this will hold the int value of fig
+(gdb) 195	  bool figfound = false;  //this will hold the fig was found
+(gdb) 198	  std::unordered_map<std::string, std::string>::const_iterator got;
+(gdb) 201	  length = encoded.length();
+(gdb) 204	  got = mymap.find("CONTROL");
+(gdb) 206	  if(got != mymap.end())
+(gdb) 210	    singlelimit = atoi(got->second.c_str());
+(gdb) Continuing.
+
+Breakpoint 2, _fu19___ZTIi () at src/Source.cpp:278
+278	        index+=2;
+(gdb) 283	          temp = encoded.substr(index, 3);
+(gdb) 284	          tempcomp[0] = temp.at(0);
+(gdb) $1 = 32
+(gdb) $2 = 38
+(gdb) $3 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fbe0 "333"}, 
+  _M_string_length = 3, {
+    _M_local_buf = "333\000\000\000\000\000Èüg\000\200áïo", 
+    _M_allocated_capacity = 3355443}}
+(gdb) $4 = {0, 1276, 0}
+(gdb) 285	          tempcomp[1] = temp.at(1);
+(gdb) 286	          tempcomp[2] = temp.at(2);
+(gdb) $5 = {51, 51, 0}
+(gdb) 288	          if ( (tempcomp[1] == tempcomp[2]) && (tempcomp[2] == tempcomp[3]) && (tempcomp[1] == tempcomp[3]) )
+(gdb) $6 = {51, 51, 51}
+(gdb) 297	            throw 5;
+(gdb) $7 = {51, 51, 51}
+(gdb) 

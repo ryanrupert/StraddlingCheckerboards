@@ -190,6 +190,10 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   int parinthvalueint = 0;  //this will hold the value of a parithase in int
   std::string parinthasevalue; //this will hold the value of papinthase
   bool parinthIsOpen = false; //this will hold if the parinthase is open or not
+  std::string figvalue; //this will hold the value of fig
+  int figvalueint = 0;  //this will hold the int value of fig
+  bool figfound = false;  //this will hold the fig was found
+  int tempcomp[3];  //this will hold the temps
   //this declares the iterator
   std::unordered_map<std::string, std::string>::const_iterator got;
 
@@ -227,6 +231,18 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
   else
     codefound = false;
 
+  //find the fig values
+  got = mymap.find("FIG");
+  //if it does then
+  if (got != mymap.end())
+  {
+    //put the value if fig in figvalue
+    figvalue = got->second;
+    //put the intiger value of fig in figvalueint
+    figvalueint = atoi(got->second.c_str());
+  }
+
+
   //if the codevalueint is a double digit number then set codedouble to true else false
   codedouble = ((codevalueint >= 0) && (codevalueint <= 9)) ? false : (codevalueint > 9) ? true : false;
 
@@ -252,6 +268,44 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
     //this will loop till it has gone through all the numbers
     while(index < length)
     {
+      //put the string at index in temp
+      temp = encoded.substr(index, 2);
+      tempint = atoi(temp.c_str());
+      //if tempint equals figvalue then
+      if (tempint == figvalueint)
+      {
+        //add 2 to int
+        index+=2;
+        //while tempint is not equal figvalueint
+        do
+        {
+          //put encoded string at index in temp
+          temp = encoded.substr(index, 3);
+          tempcomp[0] = temp.at(0);
+          tempcomp[1] = temp.at(1);
+          tempcomp[2] = temp.at(2);
+          //if temp at 1 equals temp at 2 and temp at 2 equals temp at 3 and temp at 1 equals temp at 3 then
+          if ( (tempcomp[0] == tempcomp[1]) && (tempcomp[1] == tempcomp[2]) && (tempcomp[0] == tempcomp[2]) )
+          {
+            //std::cout << "MADE FIG" << std::endl;
+            //add temp at 1 to decoded and put in decoded
+            decoded = decoded + temp[1];
+            //turn figfound to true
+            figfound = true;
+            index += 3;
+          }
+          else
+            //std::cout << "error string decoded" << decoded << std::endl;
+            throw 5;
+          //index += 3;
+          //put encoded string at index in temp
+          temp = encoded.substr(index, 2);
+          //turn temp to an intiger then put in tempint
+          tempint = atoi(temp.c_str());
+        }while (!(tempint == figvalueint));
+        index += 2;
+      }
+
       //put the value at the index position in temp dependent on if the code
       //value is double
       (codedouble == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
@@ -260,7 +314,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
       tempint = atoi(temp.c_str());
 
       //if any of the special cases is true then do what is in the if
-      if(((codevalueint == tempint) && (codefound == true)) || ((parinthfound == true) && (parinthvalueint == tempint)))
+      if((((codevalueint == tempint) && (codefound == true)) || ((parinthfound == true) && (parinthvalueint == tempint))) && (figfound != true))
       {
         if((codevalueint == tempint) && (codefound == true))
         {
@@ -307,7 +361,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
           index+=2;
         }
       }
-      else
+      else if (figfound != true)
       {
         //put the value in encoed at indek in temp
         temp = encoded.at(index);
@@ -384,6 +438,7 @@ std::string decode(const std::unordered_map<std::string, std::string> & mymap,st
         else
           throw 5;
       }
+      figfound = false;
     }
   }
   catch(int e)

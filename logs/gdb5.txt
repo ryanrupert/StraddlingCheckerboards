@@ -1,0 +1,30 @@
+(gdb) Temporary breakpoint 3 at 0x40145a: file src/Source.cpp, line 16.
+Starting program: D:\Ryan\Documents\Projects\Code\Git\MapTests\bin/a.exe 
+[New Thread 10356.0x314]
+
+Temporary breakpoint 3, main () at src/Source.cpp:16
+16	  std::string encoded;
+(gdb) Continuing.
+
+Breakpoint 1, decode (mymap=..., encoded=...) at src/Source.cpp:177
+177	  std::string decoded;  //this will hold the decoded string
+(gdb) 178	  std::string temp; //this will hold a temp string
+(gdb) 179	  int index = 0;  //this will hold the index position
+(gdb) Continuing.
+
+Breakpoint 2, _fu19___ZTIi () at src/Source.cpp:277
+277	        index+=2;
+(gdb) 282	          temp = encoded.substr(index, 3);
+(gdb) 284	          if ( (temp[1] == temp[2]) && (temp[2] == temp[3]) && (temp[1] == temp[3]) )
+(gdb) $1 = {static npos = <optimized out>, 
+  _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x67fbe0 "333"}, 
+  _M_string_length = 3, {
+    _M_local_buf = "333\000\000\000\000\000Èüg\000\200áïo", 
+    _M_allocated_capacity = 3355443}}
+(gdb) $2 = 38
+(gdb) $3 = 32
+(gdb) A debugging session is active.
+
+	Inferior 1 [process 10356] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
