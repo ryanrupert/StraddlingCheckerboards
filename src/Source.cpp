@@ -25,7 +25,7 @@ int main()
   std::cout << "Enter a string to encoded" << std::endl;
   std::getline(std::cin, plain);
   //encode plain text
-  encoded = crypto.encode(ct1, plain);
+  encoded = crypto.encode(crypto.ct1, plain);
   //output the encoded text
   std::cout << "Encoded: " << encoded << std::endl;
   std::cin.get();
@@ -34,7 +34,7 @@ int main()
   std::cout << "Enter a string to decode" << std::endl;
   std::getline(std::cin, encoded);
   //decode encoded text
-  decoded = crypto.decode(ct1, encoded);
+  decoded = crypto.decode(crypto.ct1, encoded);
   //output the decoded text
   std::cout << "Decoded: " << decoded << std::endl;
   std::cin.get();
@@ -46,7 +46,7 @@ int main()
   std::cout << "Enter a string to encoded" << std::endl;
   std::getline(std::cin, plain);
   //encode plain text
-  encoded = crypto.encode(ct37, plain);
+  encoded = crypto.encode(crypto.ct37, plain);
   //output the encoded text
   std::cout << "Encoded: " << encoded << std::endl;
   std::cin.get();
@@ -55,7 +55,7 @@ int main()
   std::cout << "Enter a string to decode" << std::endl;
   std::getline(std::cin, encoded);
   //decode encoded text
-  decoded = crypto.decode(ct37, encoded);
+  decoded = crypto.decode(crypto.ct37, encoded);
   //output the decoded text
   std::cout << "Decoded: " << decoded << std::endl;
   std::cin.get();
