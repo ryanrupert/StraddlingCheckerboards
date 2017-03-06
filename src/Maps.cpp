@@ -1,6 +1,6 @@
 #include "Header.h"
-const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
-const std::unordered_map<std::string, std::string> ct1 = {
+const Crypto::std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
+const Crypto::std::unordered_map<std::string, std::string> ct1 = {
   {"CONTROL","6"},
   {"CODE","0"},
   {"A","1"},
@@ -43,7 +43,7 @@ const std::unordered_map<std::string, std::string> ct1 = {
 
 
 
-const std::unordered_map<std::string, std::string> ct37 = {
+const Crypto::std::unordered_map<std::string, std::string> ct37 = {
   {"CONTROL","6"},
   {"E","0"},
   {"S","1"},

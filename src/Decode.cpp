@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "Header.h"
 //const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
-std::string decode(const std::unordered_map<std::string, std::string> & mymap,std::string encoded)
+std::string Crypto::decode(const std::unordered_map<std::string, std::string> & mymap,std::string encoded)
 {
   //declare vars
   std::string decoded;  //this will hold the decoded string
