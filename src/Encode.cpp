@@ -30,7 +30,7 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
 
   //get the plain length
   length = plain.length();
-
+  
   //this try is for a guard against not finding the letter
   try{
     //this will loop till it has gone through all the letters

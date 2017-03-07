@@ -12,12 +12,15 @@
 
 int main()
 {
-  Crypto crypto;
+  Crypto crypt1;
   //declare vars
   std::string encoded;
   std::string decoded;
   std::string plain;
-
+  //added this to see if there is any data in the map but there isn't
+  for( const auto& foo : crypt1.ct1 ) {
+        std::cout << "Key: " << foo.first << "Value: " << foo.second << "\n";
+    }
   //Show the user that this is using the ct1 map
   std::cout << "CT1:" << std::endl;
 
@@ -25,7 +28,7 @@ int main()
   std::cout << "Enter a string to encoded" << std::endl;
   std::getline(std::cin, plain);
   //encode plain text
-  encoded = crypto.encode(crypto.ct1, plain);
+  encoded = crypt1.encode(crypt1.ct1, plain);
   //output the encoded text
   std::cout << "Encoded: " << encoded << std::endl;
   std::cin.get();
@@ -34,7 +37,7 @@ int main()
   std::cout << "Enter a string to decode" << std::endl;
   std::getline(std::cin, encoded);
   //decode encoded text
-  decoded = crypto.decode(crypto.ct1, encoded);
+  decoded = crypt1.decode(crypt1.ct1, encoded);
   //output the decoded text
   std::cout << "Decoded: " << decoded << std::endl;
   std::cin.get();
@@ -46,7 +49,7 @@ int main()
   std::cout << "Enter a string to encoded" << std::endl;
   std::getline(std::cin, plain);
   //encode plain text
-  encoded = crypto.encode(crypto.ct37, plain);
+  encoded = crypt1.encode(crypt1.ct37, plain);
   //output the encoded text
   std::cout << "Encoded: " << encoded << std::endl;
   std::cin.get();
@@ -55,7 +58,7 @@ int main()
   std::cout << "Enter a string to decode" << std::endl;
   std::getline(std::cin, encoded);
   //decode encoded text
-  decoded = crypto.decode(crypto.ct37, encoded);
+  decoded = crypt1.decode(crypt1.ct37, encoded);
   //output the decoded text
   std::cout << "Decoded: " << decoded << std::endl;
   std::cin.get();
