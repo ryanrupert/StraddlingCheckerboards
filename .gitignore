@@ -23,6 +23,7 @@
 # Logs and databases #
 ######################
 *.log
+/logs/*
 *.sql
 *.sqlite
 
@@ -39,3 +40,4 @@ Thumbs.db
 # Exemptions and Other Things to be Ignored #
 #############################################
 !exempt_*
+!.gitkeep

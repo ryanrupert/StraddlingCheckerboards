@@ -18,9 +18,11 @@ int main()
   std::string decoded;
   std::string plain;
   //added this to see if there is any data in the map but there isn't
-  for( const auto& foo : crypt1.ct1 ) {
-        std::cout << "Key: " << foo.first << "Value: " << foo.second << "\n";
-    }
+  std::cout << "test" << std::endl;
+  std::unordered_map<std::string, std::string>::const_iterator got;
+  got = crypt1.ct1.find("T");
+  if(got != crypt1.ct1.end())
+    std::cout << "T was found as" << got->second << std::endl;
   //Show the user that this is using the ct1 map
   std::cout << "CT1:" << std::endl;
 
