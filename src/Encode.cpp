@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "Encoding.h"
 //const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
-std::string Crypto::encode(const std::unordered_map<std::string, std::string> & mymap,std::string plain)
+std::string Crypto::encode(const std::unordered_map<std::string, std::string> & mymap, std::string plain)
 {
   //declare vars
   std::string encoded;  //this will hold the encoded text
@@ -46,6 +46,8 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
         {
           encoded = encoded + plain.at(index) + plain.at(index) + plain.at(index);
           index++;
+          if (index > plain.length()-1)
+            break;
         }
         encoded = encoded + figvalue;
         figfound = true;

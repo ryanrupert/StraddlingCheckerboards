@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "Encoding.h"
 //const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
-std::string Crypto::decode(const std::unordered_map<std::string, std::string> & mymap,std::string encoded)
+std::string Crypto::decode(const std::unordered_map<std::string, std::string> & mymap, std::string encoded)
 {
   //declare vars
   std::string decoded;  //this will hold the decoded string
@@ -30,6 +30,8 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
   int figvalueint = 0;  //this will hold the int value of fig
   bool figfound = false;  //this will hold the fig was found
   int tempcomp[3];  //this will hold the temps
+  bool codedo = false;  //this will hold weather or not to do the code if
+  bool parinthdo = false; // this will hold weather or not to do the parinth if
   //this declares the iterator
   std::unordered_map<std::string, std::string>::const_iterator got;
 
@@ -141,17 +143,21 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
         index += 2;
       }
 
+      if (index > encoded.length()-1)
+        break;
+
       //put the value at the index position in temp dependent on if the code
       //value is double
       (codedouble == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
+      codedo = ((codevalue.compare(temp) == 0) && (codefound == true)) ? true : false;
       (parinthfound == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
-      //turn temp to c string then turn to a number and place in tempint
-      tempint = atoi(temp.c_str());
+      parinthdo = ((parinthfound == true) && (parinthvalueint == tempint)) ? true : false;
 
       //if any of the special cases is true then do what is in the if
-      if((((codevalueint == tempint) && (codefound == true)) || ((parinthfound == true) && (parinthvalueint == tempint))) && (figfound != true))
+      if((codedo || parinthdo) && (figfound != true))
       {
-        if((codevalueint == tempint) && (codefound == true))
+        (codedouble == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
+        if((codevalue.compare(temp) == 0) && (codefound == true))
         {
           //add one to index if code is a single digit
           if(codedouble == false)
@@ -189,7 +195,10 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           //add three to index
           index+=3;
         }
-        else if((parinthfound == true) && (parinthvalueint == tempint))
+        if (index > encoded.length()-1)
+          break;
+        (parinthfound == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
+        if((parinthfound == true) && (parinthvalueint == tempint))
         {
           decoded = (parinthIsOpen == false) ? decoded + "(" : decoded + ")";
           parinthIsOpen = (parinthIsOpen == false) ? true : false;
