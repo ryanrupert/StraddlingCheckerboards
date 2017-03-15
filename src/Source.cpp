@@ -19,9 +19,10 @@ int main()
   if (operation == 0)
   {
     //declare vars
-    std::string encoded;
-    std::string decoded;
-    std::string plain;
+    std::string encoded;  //this will hold the encoded text
+    std::string decoded;  //this will hold the decoded text
+    std::string plain;  //this will hold the plain text
+
     //Show the user that this is using the ct1 map
     std::cout << "CT1:" << std::endl;
 
@@ -67,49 +68,58 @@ int main()
   else if (operation == 1)
   {
     //declare vars
-    std::ofstream out;
-    out.open("errors.txt", std::ios::app);
+    std::ofstream out;  //create out stream
+    out.open("errors.txt", std::ios::app);  //open the out stream
+    //this is the letters numbers and symbols that can be used in the ct1 map
     std::string ct1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 .:'(+-=";
+    //this is the letters numbers and symbols that can be used in the ct37 map
     std::string ct37 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 .,'?/+-=";
-    const int length = 20;
-    int repeat = 1000000;
-    char tempc[length + 1];
-    int tempint = 0;
-    std::string temp;
-    int index = 0;
-    int index2 = 0;
-    int ct1limit = ct1.length();
-    int ct37limit = ct37.length();
-    bool parinthlast = false;
+    const int length = 20;  //this will string gen length
+    int repeat = 1000000;   //this will hold how many times to test a map
+    char tempc[length + 1]; //this holds the string generated
+    int tempint = 0;  //this will hold temp numbers
+    std::string temp; //this will hold temp strings
+    int index = 0;  //this is the outer index
+    int index2 = 0; //this is the inner index
+    int ct1limit = ct1.length();  //this holds the limit of the ct1 string
+    int ct37limit = ct37.length();  //this holds the limit of the ct37 string
+    bool parinthlast = false; //this will hold if a parinthase was used last loop
 
     out << "CT1:\n";
     //test loop
     while (repeat > index)
     {
-      //find letter
+      //reset vars
       index2 = 0;
       parinthlast = false;
+      //find letter
       while (index2 < length)
       {
         //find random position in str
         tempint = rand()%ct1limit;
+        //if ct1 at tempint is a parinth and was last loop then
         if ((ct1.at(tempint) == '(') && (parinthlast == true))
         {
+          //close parinth
           tempc[index2] = ')';
+          //set parinthlast false
           parinthlast = false;
         }
+        //else if ct1 at tempint is parinth and wasn't last loop then
         else if ((ct1.at(tempint) == '(') && (parinthlast == false))
         {
+          //put it in the string at index2
           tempc[index2] = ct1.at(tempint);
+          //set parinthlast to true
           parinthlast = true;
         }
+        //else put the char in ct1 at tempint in tempc
         else
           tempc[index2] = ct1.at(tempint);
-        //put the in character at tempint in tempc at index2
-        //tempc[index2] = str.at(tempint);
         //add 1 to index2
         index2++;
       }
+      //terminate the array
       tempc[index2] = '\0';
       //encode tempc
       temp = crypt1.encode(crypt1.ct1, tempc);
@@ -136,30 +146,37 @@ int main()
     index = 0;
     while (repeat > index)
     {
-      //find letter
+      //reset vars
       index2 = 0;
       parinthlast = false;
+      //find letter
       while (index2 < length)
       {
         //find random position in str
         tempint = rand()%ct37limit;
+        //if the char in ct37 at tempint is a parinth and was last loop then
         if ((ct37.at(tempint) == '(') && (parinthlast == true))
         {
+          //close parinth
           tempc[index2] = ')';
+          //set parinthlast false
           parinthlast = false;
         }
+        //else if char at ct37 in parinth and wasn't last loop then
         else if ((ct37.at(tempint) == '(') && (parinthlast == false))
         {
+          //put parinth in the array
           tempc[index2] = ct37.at(tempint);
+          //set parinth last to true
           parinthlast = true;
         }
+        //else ct37 at tempint goes into tempc
         else
           tempc[index2] = ct37.at(tempint);
-        //put the in character at tempint in tempc at index2
-        //tempc[index2] = str.at(tempint);
         //add 1 to index2
         index2++;
       }
+      //null terminate the array
       tempc[index2] = '\0';
       //encode tempc
       temp = crypt1.encode(crypt1.ct37, tempc);
@@ -181,8 +198,8 @@ int main()
     }
     out << "---------------------------------------------------------------\n";
 
-    out.close();
-    std::cin.get();
+    out.close();  //close the out stream
+    std::cin.get(); //pause the program
   }
   else if (operation == 2)
   {
