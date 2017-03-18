@@ -23,7 +23,6 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
   int codevalueint = 0; //this will hold he code value as an int
   bool codedouble = false;  //this will hold if code is a double digit
   bool parinthfound = false;  //this will hold if a parinthase was found
-  int parinthvalueint = 0;  //this will hold the value of a parithase in int
   std::string parinthasevalue; //this will hold the value of papinthase
   bool parinthIsOpen = false; //this will hold if the parinthase is open or not
   std::string figvalue; //this will hold the value of fig
@@ -91,8 +90,6 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
   {
     //put the value of code in codevalue
     parinthasevalue = got->second;
-    //put the intiger value of code in codevalueint
-    parinthvalueint = atoi(got->second.c_str());
     //set code found to true
     parinthfound = true;
   }
@@ -107,6 +104,7 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
     {
       //put the string at index in temp
       temp = encoded.substr(index, 2);
+      //change temp to int and put in tempint
       tempint = atoi(temp.c_str());
       //if tempint equals figvalue then
       if (tempint == figvalueint)
@@ -129,6 +127,7 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
             decoded = decoded + temp[1];
             //turn figfound to true
             figfound = true;
+            //add 3 to index
             index += 3;
           }
           else
@@ -139,19 +138,27 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           temp = encoded.substr(index, 2);
           //turn temp to an intiger then put in tempint
           tempint = atoi(temp.c_str());
+          //while tempint and figvalueint epual eachother is not true then loop
         }while (!(tempint == figvalueint));
+        //add 2 to index
         index += 2;
       }
-
+      //if index is larger than encoded length then break
       if (index > encoded.length()-1)
         break;
 
-      //put the value at the index position in temp dependent on if the code
-      //value is double
+      //if codedouble is true then take and put in temp the next two letters
+      //if false then take and put in temp the next letter
       (codedouble == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
+      //if codevalue is equal to temp and codefound is true then set codedo to true
+      //else set codedo to false
       codedo = ((codevalue.compare(temp) == 0) && (codefound == true)) ? true : false;
+      //if parinthfound is true then take and put in temp the next two letters
+      //if false then take and put in temp the next letter
       (parinthfound == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
-      parinthdo = ((parinthfound == true) && (parinthvalueint == tempint)) ? true : false;
+      //if parinthasevalue is equal to temp and parinthfound is true then set parinthdo to true
+      //else set parinthfound to false
+      parinthdo = ((parinthfound == true) && (parinthasevalue.compare(temp) == 0)) ? true : false;
 
       //if any of the special cases is true then do what is in the if
       if((codedo || parinthdo) && (figfound != true))
@@ -195,16 +202,25 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           //add three to index
           index+=3;
         }
+        //if index is larger than encoded length then break out of the main loop
         if (index > encoded.length()-1)
           break;
+        //if parinthfound is true then set temp to the next two letters
+        //else set temp to the next letter
         (parinthfound == true) ? temp = encoded.substr(index, 2) : temp = encoded.at(index);
-        if((parinthfound == true) && (parinthvalueint == tempint))
+        //if parinth found is true and parinthasevalue is equal to temp then
+        if((parinthfound == true) && (parinthasevalue.compare(temp) == 0))
         {
+          //set decoded to a open parinthase if parinthIsOpen is false else close the parinthase
           decoded = (parinthIsOpen == false) ? decoded + "(" : decoded + ")";
+          //set parinthIsOpen to true if parinthIsOpen is false
+          //if true set to false
           parinthIsOpen = (parinthIsOpen == false) ? true : false;
+          //add 2 to index
           index+=2;
         }
       }
+      //if figfound is not true then
       else if (figfound != true)
       {
         //put the value in encoed at indek in temp
@@ -246,6 +262,8 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           //add one to index
           index++;
         }
+        //if tempint is greater than or equal to singlelimitmod and less than
+        //or equal to 99 then
         else if((tempint >= singlelimitmod) && (tempint <= 99))
         {
           //put the value at index in temp
@@ -279,9 +297,11 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           //add two to index
           index+=2;
         }
+        //if nothing fits throw 5
         else
           throw 5;
       }
+      //set figfound to false
       figfound = false;
     }
   }

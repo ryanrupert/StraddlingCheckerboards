@@ -24,10 +24,13 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
 
   //this searchs the map to see if code is in there and puts the result in got
   got = mymap.find("CODE");
+  //if code was found and got is not mymap.end() then put the code value in codevalue
   if(got != mymap.end())
     codevalue = got->second;
 
+  //this searchs the map to see if fig is in there and puts the result in got
   got = mymap.find("FIG");
+  //if fig was found and got is nat mymap.end() then put the fig value in figvalue
   if(got != mymap.end())
     figvalue = got->second;
 
@@ -39,24 +42,35 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
     //this will loop till it has gone through all the letters
     while (index < length)
     {
+      //if the char at plain index in a digit then
       if (std::isdigit(plain.at(index)))
       {
+        //add the figure value to encoded
         encoded = encoded + figvalue;
+        //while the char at plain index in a digit loop
         while (std::isdigit(plain.at(index)))
         {
+          //add the number at plain index to encoded 3 times
           encoded = encoded + plain.at(index) + plain.at(index) + plain.at(index);
+          //add one to index
           index++;
+          //if the index is bigger than plain length then break
           if (index > plain.length()-1)
             break;
         }
+        //add figvalue to encoded
         encoded = encoded + figvalue;
+        //set figfound to true
         figfound = true;
         //index++;
       }
       //if code was found in the map then
       //this will find if it is a code word
+      //TODO: I think the for loop can be changed at a find in unordered_map
+      //instead of a for loop of code
       else if(codevalue != "null" && figfound != true)
       {
+        //loop till codevalue is found
         for(const auto& foo : code)
         {
           //put the length of the current code word in codelength
@@ -106,7 +120,9 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
         else
           throw 5;
       }
+      //set codefound to false
       codefound = false;
+      //set figfound to false
       figfound = false;
     }
   }
