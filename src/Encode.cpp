@@ -51,7 +51,7 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
           //add one to index
           index++;
           //if the index is bigger than plain length then break
-          if (index > plain.length()-1)
+          if (index > plain.length()-1)   //REVIEW: What would be the best fix for this
             break;
         }
         //add figvalue to encoded

@@ -140,7 +140,7 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
         index += 2;
       }
       //if index is larger than encoded length then break
-      if (index > encoded.length()-1)
+      if (index > encoded.length()-1)   //REVIEW: What would be the best fix for this
         break;
 
       //if codedouble is true then take and put in temp the next two letters
@@ -199,7 +199,7 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           index+=3;
         }
         //if index is larger than encoded length then break out of the main loop
-        if (index > encoded.length()-1)
+        if (index > encoded.length()-1)   //REVIEW: What would be the best fix for this
           break;
         //if parinthfound is true then set temp to the next two letters
         //else set temp to the next letter
