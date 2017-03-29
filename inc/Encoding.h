@@ -3,7 +3,9 @@
 */
 #pragma once
 #include <unordered_map>
-#include <iostream>
+#include <iostream>   //REVIEW: See if iostream is needed
+#include <string>
+#include <stdlib.h>
 
 class Crypto
 {

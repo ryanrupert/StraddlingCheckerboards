@@ -1,10 +1,6 @@
 /**
 * Created By Ryan Rupert on 2/13/2017.
 */
-#include <iostream>
-#include <unordered_map>
-#include <string>
-#include <stdlib.h>
 #include "Encoding.h"
 //const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
 std::string Crypto::encode(const std::unordered_map<std::string, std::string> & mymap, std::string plain)
