@@ -15,11 +15,14 @@ public:
   Crypto ();
   std::string decode(const std::unordered_map<std::string, std::string> & mymap,std::string encoded);
   std::string encode(const std::unordered_map<std::string, std::string> & mymap,std::string plain);
-  void setLang(std::string lang);
+  bool setLang(char language[3]);
 
 //member tables
 private:
-  bool getTable(std::string table);
+  pugi::xml_document doc;
+  pugi::xml_node current;
+  char lang[3];
+  bool getTable(std::string tableid);
   std::unordered_map<std::string, std::string> table;
   std::unordered_map<std::string, std::string> codes;
   const std::unordered_map<std::string, std::string> code = {
