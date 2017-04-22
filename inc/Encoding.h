@@ -2,6 +2,7 @@
 * Created By Ryan Rupert on 2/13/2017.
 */
 #pragma once
+#include "pugixml.hpp"
 #include <unordered_map>
 #include <iostream>   //REVIEW: See if iostream is needed
 #include <string>
@@ -14,9 +15,13 @@ public:
   Crypto ();
   std::string decode(const std::unordered_map<std::string, std::string> & mymap,std::string encoded);
   std::string encode(const std::unordered_map<std::string, std::string> & mymap,std::string plain);
+  void setLang(std::string lang);
 
 //member tables
 private:
+  bool getTable(std::string table);
+  std::unordered_map<std::string, std::string> table;
+  std::unordered_map<std::string, std::string> codes;
   const std::unordered_map<std::string, std::string> code = {
     {"ABORT","000"},
     {"ACCEPT","019"},
