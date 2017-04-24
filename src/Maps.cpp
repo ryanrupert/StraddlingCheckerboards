@@ -7,16 +7,16 @@ Crypto::Crypto()
   doc.load_file("table.xml");
 }
 
-bool Crypto::setLang(char language[3])
+void Crypto::setLang(char language[3])
 {
   for (int i = 0; i < 3; ++i)
   {
     lang[i] = language[i];
   }
-  return getTable("CODE");
+  getTable("CODE");
 }
 
-bool Crypto::getTable(std::string tableid)
+void Crypto::getTable(std::string tableid)
 {
   std::string num;
   std::string str;
