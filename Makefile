@@ -7,13 +7,14 @@ LIBDIR := lib
 OBJDIR := obj
 SRCDIR := src
 #file lists
-LIB := $(shell find $(LIBDIR) -type f -name *.cpp)
-#LIB := #list library files here
-SRC := Source.cpp Maps.cpp Encode.cpp Decode.cpp
+#LIB := $(shell find $(LIBDIR) -type f -name *.cpp)
+LIB := pugixml.cpp
+SRC := Decode.cpp Encode.cpp Maps.cpp Source.cpp
 OBJ := $(SRC:.cpp=.o)
+LIBO := $(LIB:.cpp=.o)
 #dir/file
 OBJPATH := $(patsubst %.o,obj/%.o,$(OBJ))
-LIBPATH := $(patsubst %.o,obj/%.o,$(LIB))
+LIBPATH := $(patsubst %.o,lib/%.o,$(LIBO))
 FINAL := $(OBJPATH) $(LIBPATH)
 #flags
 CFLAG := -c -std=c++11
@@ -25,11 +26,16 @@ all: $(OBJPATH)
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) $(CFLAG) -I$(INCDIR) -I$(LIBDIR) $< -o $@
 
+buildwdep: $(LIBPATH)
+
 $(LIBDIR)/%.o: $(LIBDIR)/%.cpp
 	$(CC) $(CFLAG) -I$(LIBDIR) $< -o $@
 
+buildwdep: all
+
+
 debug: CFLAG += -g
-debug: clean all
+debug: all
 
 .PHONY: clean
 

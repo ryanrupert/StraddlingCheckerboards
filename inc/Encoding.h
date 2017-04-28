@@ -7,14 +7,15 @@
 #include <iostream>   //REVIEW: See if iostream is needed
 #include <string>
 #include <stdlib.h>
+#include <ctype.h>
 
 class Crypto
 {
 //members
 public:
   Crypto ();
-  std::string decode(const std::unordered_map<std::string, std::string> & mymap,std::string encoded);
-  std::string encode(const std::unordered_map<std::string, std::string> & mymap,std::string plain);
+  std::string decode(std::string tableid,std::string encoded); //changing this for the get table by xml
+  std::string encode(std::string tableid,std::string plain); //same here
   void setLang(char language[3]);
 
 //member tables
@@ -24,16 +25,16 @@ private:
   char lang[3];
   void getTable(std::string tableid);
   std::unordered_map<std::string, std::string> table;
-  std::unordered_map<std::string, std::string> codes;
-  const std::unordered_map<std::string, std::string> code = {
+  std::unordered_map<std::string, std::string> code;
+  /*const std::unordered_map<std::string, std::string> code = {
     {"ABORT","000"},
     {"ACCEPT","019"},
     {"ACCESS","028"},
     {"ADDRESS","037"},
-    {"AGENT","046"}};
+    {"AGENT","046"}};*/
 
 public:
-  const std::unordered_map<std::string, std::string> ct1 = {
+  /*const std::unordered_map<std::string, std::string> ct1 = {
     {"CONTROL","6"},
     {"CODE","0"},
     {"A","1"},
@@ -72,8 +73,8 @@ public:
     {"-","96"},
     {"=","97"},
     {"REQ","98"},
-    {" ","99"}};
-  const std::unordered_map<std::string, std::string> ct37 = {
+    {" ","99"}};*/
+  /*const std::unordered_map<std::string, std::string> ct37 = {
     {"CONTROL","6"},
     {"E","0"},
     {"S","1"},
@@ -111,5 +112,5 @@ public:
     {"+","96"},
     {"-","97"},
     {"=","98"},
-    {"CODE","99"}};
+    {"CODE","99"}};*/
 };

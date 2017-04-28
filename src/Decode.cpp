@@ -3,8 +3,9 @@
 */
 #include "Encoding.h"
 //const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
-std::string Crypto::decode(const std::unordered_map<std::string, std::string> & mymap, std::string encoded)
+std::string Crypto::decode(std::string tableid, std::string encoded)
 {
+  this->getTable(tableid);
   //declare vars
   std::string decoded;  //this will hold the decoded string
   std::string temp; //this will hold a temp string
@@ -34,9 +35,9 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
   length = encoded.length();
 
   //this finds the control key for the number at wich single digits stop
-  got = mymap.find("CONTROL");
+  got = table.find("CONTROL");
   //if control is found then
-  if(got != mymap.end())
+  if(got != table.end())
   {
     //the value at got is turned to a c string then turned to a number and put
     //in singlelimit
@@ -49,9 +50,9 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
     throw 5;
 
   //find if this encode map uses code
-  got = mymap.find("CODE");
+  got = table.find("CODE");
   //if it does then
-  if (got != mymap.end())
+  if (got != table.end())
   {
     //put the value of code in codevalue
     codevalue = got->second;
@@ -65,9 +66,9 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
     codefound = false;
 
   //find the fig values
-  got = mymap.find("FIG");
+  got = table.find("FIG");
   //if it does then
-  if (got != mymap.end())
+  if (got != table.end())
   {
     //put the value if fig in figvalue
     figvalue = got->second;
@@ -80,9 +81,9 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
   codedouble = ((codevalueint >= 0) && (codevalueint <= 9)) ? false : (codevalueint > 9) ? true : false;
 
   //find if the encoded map has parinthasis
-  got = mymap.find("(");
+  got = table.find("(");
   //if it does then
-  if (got != mymap.end())
+  if (got != table.end())
   {
     //put the value of code in codevalue
     parinthasevalue = got->second;
@@ -231,7 +232,7 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           temp = encoded.at(index);
 
           //loop through the map looking for the number
-          for (const auto& foo : mymap)
+          for (const auto& foo : table)
           {
             //if the map number equals temp
             if(foo.second == temp)
@@ -266,7 +267,7 @@ std::string Crypto::decode(const std::unordered_map<std::string, std::string> & 
           temp = encoded.substr(index,2);
 
           //loop through the map looking for the number
-          for (const auto& foo : mymap)
+          for (const auto& foo : table)
           {
             //if the map number equals temp
             if(foo.second == temp)

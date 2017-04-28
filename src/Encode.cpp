@@ -3,8 +3,9 @@
 */
 #include "Encoding.h"
 //const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
-std::string Crypto::encode(const std::unordered_map<std::string, std::string> & mymap, std::string plain)
+std::string Crypto::encode(std::string tableid, std::string plain)
 {
+  this->getTable(tableid);
   //declare vars
   std::string encoded;  //this will hold the encoded text
   std::string temp; //this will hold a temp string
@@ -19,15 +20,15 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
   std::unordered_map<std::string, std::string>::const_iterator got;
 
   //this searchs the map to see if code is in there and puts the result in got
-  got = mymap.find("CODE");
-  //if code was found and got is not mymap.end() then put the code value in codevalue
-  if(got != mymap.end())
+  got = table.find("CODE");
+  //if code was found and got is not table.end() then put the code value in codevalue
+  if(got != table.end())
     codevalue = got->second;
 
   //this searchs the map to see if fig is in there and puts the result in got
-  got = mymap.find("FIG");
-  //if fig was found and got is nat mymap.end() then put the fig value in figvalue
-  if(got != mymap.end())
+  got = table.find("FIG");
+  //if fig was found and got is nat table.end() then put the fig value in figvalue
+  if(got != table.end())
     figvalue = got->second;
 
   //get the plain length
@@ -99,11 +100,11 @@ std::string Crypto::encode(const std::unordered_map<std::string, std::string> & 
         //get the letter at the index position
         temp = plain.at(index);
         //find the letter in temp and put in got
-        got = mymap.find (temp);
+        got = table.find (temp);
 
         //if end is not found meaning that the search did not reach the end of the
         //map then
-        if(got != mymap.end())
+        if(got != table.end())
         {
           //add the number at the second position of got to encoded and place the
           //result in encoded

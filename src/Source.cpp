@@ -16,6 +16,7 @@ int main()
 {
   srand(time(0));
   Crypto crypt1;
+  crypt1.setLang("EN");   //TODO: get help form hubbard
   //this is for user inputed tests
   if (operation == 0)
   {
@@ -31,7 +32,7 @@ int main()
     std::cout << "Enter a string to encoded" << std::endl;
     std::getline(std::cin, plain);
     //encode plain text
-    encoded = crypt1.encode(crypt1.ct1, plain);
+    encoded = crypt1.encode("CT1", plain);
     //output the encoded text
     std::cout << "Encoded: " << encoded << std::endl;
     std::cin.get();
@@ -40,7 +41,7 @@ int main()
     std::cout << "Enter a string to decode" << std::endl;
     std::getline(std::cin, encoded);
     //decode encoded text
-    decoded = crypt1.decode(crypt1.ct1, encoded);
+    decoded = crypt1.decode("CT1", encoded);
     //output the decoded text
     std::cout << "Decoded: " << decoded << std::endl;
     std::cin.get();
@@ -52,7 +53,7 @@ int main()
     std::cout << "Enter a string to encoded" << std::endl;
     std::getline(std::cin, plain);
     //encode plain text
-    encoded = crypt1.encode(crypt1.ct37, plain);
+    encoded = crypt1.encode("CT37", plain);
     //output the encoded text
     std::cout << "Encoded: " << encoded << std::endl;
     std::cin.get();
@@ -61,7 +62,7 @@ int main()
     std::cout << "Enter a string to decode" << std::endl;
     std::getline(std::cin, encoded);
     //decode encoded text
-    decoded = crypt1.decode(crypt1.ct37, encoded);
+    decoded = crypt1.decode("CT37", encoded);
     //output the decoded text
     std::cout << "Decoded: " << decoded << std::endl;
     std::cin.get();
@@ -125,9 +126,9 @@ int main()
       //terminate the array
       tempc[index2] = '\0';
       //encode tempc
-      temp = crypt1.encode(crypt1.ct1, tempc);
+      temp = crypt1.encode("CT1", tempc);
       //decode temp and place in temp
-      temp = crypt1.decode(crypt1.ct1, temp);
+      temp = crypt1.decode("CT1", temp);
       //if the decoded string is the same as the generated string then the
       //encoder and decoder works
       if (temp.compare(tempc) == 0) {
@@ -183,9 +184,9 @@ int main()
       //null terminate the array
       tempc[index2] = '\0';
       //encode tempc
-      temp = crypt1.encode(crypt1.ct37, tempc);
+      temp = crypt1.encode("CT37", tempc);
       //decode temp and place in temp
-      temp = crypt1.decode(crypt1.ct37, temp);
+      temp = crypt1.decode("CT37", temp);
       //if the decoded string is the same as the generated string then the
       //encoder and decoder works
       if (temp.compare(tempc) == 0) {
@@ -220,9 +221,9 @@ int main()
     std::string comp; //this will be used to hold the compare string
 
     //encode var1
-    temp = crypt1.encode(crypt1.ct37, var1);
+    temp = crypt1.encode("CT37", var1);
     //decode var1
-    comp = crypt1.decode(crypt1.ct37, temp);
+    comp = crypt1.decode("CT37", temp);
     //if the strings match then the encode decode works
     if (var1.compare(comp) == 0)
     {
@@ -237,9 +238,9 @@ out << temp << "\n";
 out << comp << "\n\n";
     }
     //encode var1
-    temp = crypt1.encode(crypt1.ct37, var2);
+    temp = crypt1.encode("CT37", var2);
     //decode var1
-    comp = crypt1.decode(crypt1.ct37, temp);
+    comp = crypt1.decode("CT37", temp);
     //if the strings match then the encode decode works
     if (var2.compare(comp) == 0)
     {
@@ -254,9 +255,9 @@ out << temp << "\n";
 out << comp << "\n\n";
     }
     //encode var1
-    temp = crypt1.encode(crypt1.ct37, var3);
+    temp = crypt1.encode("CT37", var3);
     //decode var1
-    comp = crypt1.decode(crypt1.ct37, temp);
+    comp = crypt1.decode("CT37", temp);
     //if the strings match then the encode decode works
     if (var3.compare(comp) == 0)
     {
@@ -271,9 +272,9 @@ out << comp << "\n\n";
       out << comp << "\n\n";
     }
     //encode var1
-    temp = crypt1.encode(crypt1.ct37, var4);
+    temp = crypt1.encode("CT37", var4);
     //decode var1
-    comp = crypt1.decode(crypt1.ct37, temp);
+    comp = crypt1.decode("CT37", temp);
     //if the strings match then the encode decode works
     if (var4.compare(comp) == 0)
     {
