@@ -16,7 +16,7 @@ There are no prerequisites for this class.
 Place all the files for this class in your project folder.
 
 ### Code Example
-To make the class object used
+To make the class object use
 ``` C++
 Crypto obj_name; //this creates the class object where obj_name is the name you want to give the object
 ```
@@ -32,7 +32,7 @@ As you can tell change the CTxx part to what ever number to change what checkerb
 
 
 ## Built With
-This was not built with anything out of the ordinary.
+This was build with pugixml.
 
 ## Motivation
 The motivation for this project was to build a encoder and decoder class for a straddling checkerboard.
@@ -41,9 +41,13 @@ The motivation for this project was to build a encoder and decoder class for a s
 - [ ] Add in Spanish
 - [ ] Add in German
 - [ ] Add in more straddling checkerboards
-- [ ] Make more module by using a text files or xml file to hold the tables
+- [x] Make more module by using a text files or xml file to hold the tables
 
 ## History
+4/27/17
+
+Made the straddling checkerboards dynamic by placing them in a xml file. 
+
 3/23/17
 
 Have 2 straddling checkerboards hard coded into the class. Only supports English currently.
