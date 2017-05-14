@@ -17,6 +17,7 @@ public:
   std::string decode(std::string tableid,std::string encoded); //changing this for the get table by xml
   std::string encode(std::string tableid,std::string plain); //same here
   void setLang(char language[3]);
+  char* getLang();
 
 private:
   pugi::xml_document doc;

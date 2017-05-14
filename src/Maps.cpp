@@ -28,3 +28,8 @@ void Crypto::getTable(std::string tableid)
     (tableid == "CODE") ? code.insert(std::make_pair(item.text().as_string(), item.attribute("Num").value())) : table.insert(std::make_pair(item.text().as_string(), item.attribute("Num").value()));
   }
 }
+
+char* Crypto::getLang()
+{
+  return lang;
+}
