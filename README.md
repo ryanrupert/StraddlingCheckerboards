@@ -38,15 +38,16 @@ This was build with pugixml.
 The motivation for this project was to build a encoder and decoder class for a straddling checkerboard.
 
 ## Tasks
-- [ ] Add in Spanish
-- [ ] Add in German
+- [x] Add in Spanish
+- [x] Add in German
+- [ ] Fix the conversion and display of accented characters
 - [ ] Add in more straddling checkerboards
 - [x] Make more module by using a text files or xml file to hold the tables
 
 ## History
 4/27/17
 
-Made the straddling checkerboards dynamic by placing them in a xml file. 
+Made the straddling checkerboards dynamic by placing them in a xml file.
 
 3/23/17
 
