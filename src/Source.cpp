@@ -16,7 +16,7 @@ int main()
 {
   srand(time(0));
   Crypto crypt1;
-  crypt1.setLang("EN");   //TODO: get help form hubbard
+  crypt1.setLang("EN");   //TODO: get help for forbiden conversion
   //this is for user inputed tests
   if (operation == 0)
   {
