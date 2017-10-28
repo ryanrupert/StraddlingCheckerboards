@@ -19,8 +19,6 @@ void Crypto::setLang(char language[3])
 
 void Crypto::getTable(std::string tableid)
 {
-  std::string name;
-  std::string num;
   current = doc.child("TABLES").find_child_by_attribute(tableid.c_str(), "Lang", lang);
   (tableid == "CODE") ? code.clear() : table.clear();
   for(pugi::xml_node item = current.first_child(); item; item = item.next_sibling())
