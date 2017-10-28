@@ -22,9 +22,14 @@ public:
   char* getLang();
 
 private:
-  pugi::xml_document doc;
-  pugi::xml_node current;
-  char lang[3];
+  //declare variables
+  pugi::xml_document doc; //this holds the whole XML document
+  pugi::xml_node current; //this holds the current XML document being used
+  std::unordered_map<std::string, std::string> table; //this holds the table with the id that is set
+  std::unordered_map<std::string, std::string> code; //this holds the code table for the current language
+  char lang[3]; //this holds the current language
+
+  //prototype private functions
   //this will load the table
   void getTable(std::string tableid);
   //below are the modular encoding functions
@@ -34,6 +39,4 @@ private:
   //below are the modular decoding functions
   //bool findFig(int index);
   //void findCode(int index);
-  std::unordered_map<std::string, std::string> table;
-  std::unordered_map<std::string, std::string> code;
 };
