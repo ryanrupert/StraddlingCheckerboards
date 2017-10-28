@@ -2,7 +2,6 @@
 * Created By Ryan Rupert on 2/13/2017.
 */
 #include "Encoding.h"
-//const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
 std::string Crypto::encode(std::string tableid, std::string plain)
 {
   this->getTable(tableid);
