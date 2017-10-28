@@ -33,7 +33,7 @@ private:
   //this will load the table
   void getTable(std::string tableid);
   //below are the modular encoding functions
-  //bool findDigit(int index);
+  std::string findDigit(int index, std::string plain, std::string encoded);
   //bool findCode(int index);
   //void findLetter(int index);
   //below are the modular decoding functions

@@ -40,3 +40,27 @@ char* Crypto::getLang()
   //return the language current language
   return lang;
 }
+
+
+std::string findDigit(int index, std::string plain, std::string encoded)
+{
+	//add the figure value to encoded
+        encoded = encoded + figvalue;
+        //while the char at plain index in a digit loop
+        while (std::isdigit(plain.at(index)))
+        {
+          //add the number at plain index to encoded 3 times
+          encoded = encoded + plain.at(index) + plain.at(index) + plain.at(index);
+          //add one to index
+          index++;
+          //if the index is bigger than plain length then break
+          if (index > plain.length()-1)   //REVIEW: What would be the best fix for this
+            break;
+        }
+        //add figvalue to encoded
+        encoded = encoded + figvalue;
+        //set figfound to true
+        figfound = true;
+        //index++;
+}
+

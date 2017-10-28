@@ -41,7 +41,8 @@ std::string Crypto::encode(std::string tableid, std::string plain)
       //if the char at plain index in a digit then
       if (std::isdigit(plain.at(index)))
       {
-        //add the figure value to encoded
+        this->findDigit(index, plain, encoded);
+        /*//add the figure value to encoded
         encoded = encoded + figvalue;
         //while the char at plain index in a digit loop
         while (std::isdigit(plain.at(index)))
@@ -58,7 +59,7 @@ std::string Crypto::encode(std::string tableid, std::string plain)
         encoded = encoded + figvalue;
         //set figfound to true
         figfound = true;
-        //index++;
+        //index++;*/
       }
       //if code was found in the map then
       //this will find if it is a code word
