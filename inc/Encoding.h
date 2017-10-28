@@ -27,6 +27,13 @@ private:
   char lang[3];
   //this will load the table
   void getTable(std::string tableid);
+  //below are the modular encoding functions
+  //bool findDigit(int index);
+  //bool findCode(int index);
+  //void findLetter(int index);
+  //below are the modular decoding functions
+  //bool findFig(int index);
+  //void findCode(int index);
   std::unordered_map<std::string, std::string> table;
   std::unordered_map<std::string, std::string> code;
 };
