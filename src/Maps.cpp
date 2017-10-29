@@ -42,7 +42,7 @@ char* Crypto::getLang()
 }
 
 
-std::string findDigit(int index, std::string plain, std::string encoded)
+std::string Crypto::findDigit(int &index, std::string plain, std::string encoded, std::string figvalue)
 {
 	//add the figure value to encoded
         encoded = encoded + figvalue;
@@ -60,7 +60,8 @@ std::string findDigit(int index, std::string plain, std::string encoded)
         //add figvalue to encoded
         encoded = encoded + figvalue;
         //set figfound to true
-        figfound = true;
+        //figfound = true;
         //index++;
+	return encoded;
 }
 
