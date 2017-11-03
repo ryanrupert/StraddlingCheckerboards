@@ -8,7 +8,7 @@ Crypto::Crypto()
   result = doc.load_file("table.xml");
 }
 
-void Crypto::setLang(char language[3])
+void Crypto::setLang(char *language)
 {
   //read language into lang
   for (int i = 0; i < 3; ++i)

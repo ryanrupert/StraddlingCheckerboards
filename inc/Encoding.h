@@ -16,9 +16,7 @@ public:
   Crypto ();
   std::string decode(std::string tableid,std::string encoded); //changing this for the get table by xml
   std::string encode(std::string tableid,std::string plain); //same here
-  //this will set the language
-  void setLang(char language[3]);
-  //this will get the language and return it
+  void setLang(char *language);
   char* getLang();
 
 private:
