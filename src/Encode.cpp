@@ -50,8 +50,9 @@ std::string Crypto::encode(std::string tableid, std::string plain)
       //instead of a for loop of code
       else if(codevalue != "null" && figfound != true)
       {
+      	encoded = this -> findCode(index, plain, encoded, codefound, codevalue);
         //loop till codevalue is found
-        for(const auto& foo : code)
+        /*for(const auto& foo : code)
         {
           //put the length of the current code word in codelength
           codelength = foo.first.length();
@@ -74,7 +75,7 @@ std::string Crypto::encode(std::string tableid, std::string plain)
             //break out of the loop
             break;
           }
-        }
+        }*/
       }
 
       //if a code word was found and a figure was found skip this

@@ -65,3 +65,34 @@ std::string Crypto::findDigit(int &index, std::string plain, std::string encoded
 	return encoded;
 }
 
+std::string Crypto::findCode(int &index, std::string plain, std::string encoded, bool &codefound, std::string codevalue)
+{
+	std::string temp;
+	int codelength = 0;
+        //loop till codevalue is found
+        for(const auto& foo : code)
+        {
+          //put the length of the current code word in codelength
+          codelength = foo.first.length();
+          //put the string from plain starting at index wih a length of
+          //codelength in temp
+          temp = plain.substr(index, codelength);
+
+          //if the selected range is equal to the codeword then
+          if(foo.first == temp)
+          {
+            //add codevalue and the value of the codeword te encoded
+            encoded = encoded + codevalue + foo.second;
+
+            //then set cod found to true
+            codefound = true;
+
+            //change the index to reflect the new index position
+            index+=codelength;
+
+            //break out of the loop
+            break;
+          }
+        }
+	return encoded;
+}
