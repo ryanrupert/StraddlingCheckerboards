@@ -14,6 +14,9 @@ class Crypto
 //members
 public:
   Crypto ();
+  Crypto (std::string file);
+  Crypto (char *language);
+  Crypto (std::string file, char *language);
   std::string decode(std::string tableid,std::string encoded); //changing this for the get table by xml
   std::string encode(std::string tableid,std::string plain); //same here
   void setLang(char *language);
