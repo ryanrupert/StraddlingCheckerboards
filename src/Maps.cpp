@@ -14,13 +14,13 @@ Crypto::Crypto(std::string file)
   pugi::xml_parse_result result;
   result = doc.load_file(file);
 }
-Crypto::Crypto(char *language)
+Crypto::Crypto(const char *language)
 {
   pugi::xml_parse_result result;
   result = doc.load_file("table.xml");
   this->setLang(language);
 }
-Crypto::Crypto(std::string file, char *language)
+Crypto::Crypto(std::string file, const char *language)
 {
    pugi::xml_parser_result result;
    result = doc.load_file(file);
