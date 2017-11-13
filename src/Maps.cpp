@@ -20,6 +20,12 @@ Crypto::Crypto(char *language)
   result = doc.load_file("table.xml");
   this->setLang(language);
 }
+Crypto::Crypto(std::string file, char *language)
+{
+   pugi::xml_parser_result result;
+   result = doc.load_file(file);
+   this->setLang(language);
+}
 
 
 
