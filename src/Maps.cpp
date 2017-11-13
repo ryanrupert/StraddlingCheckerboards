@@ -2,6 +2,8 @@
 * Created By Ryan Rupert on 2/13/2017.
 */
 #include "Encoding.h"
+
+//constructors
 Crypto::Crypto()
 {
   pugi::xml_parse_result result;
