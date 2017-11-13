@@ -2,7 +2,6 @@
 * Created By Ryan Rupert on 2/13/2017.
 */
 #include "Encoding.h"
-//const std::unordered_map<std::string, std::string> code = {{"ABORT","000"},{"ACCEPT","019"},{"ACCESS","028"},{"ADDRESS","037"},{"AGENT","046"}};
 std::string Crypto::encode(std::string tableid, std::string plain)
 {
   this->getTable(tableid);
@@ -42,24 +41,8 @@ std::string Crypto::encode(std::string tableid, std::string plain)
       //if the char at plain index in a digit then
       if (std::isdigit(plain.at(index)))
       {
-        //add the figure value to encoded
-        encoded = encoded + figvalue;
-        //while the char at plain index in a digit loop
-        while (std::isdigit(plain.at(index)))
-        {
-          //add the number at plain index to encoded 3 times
-          encoded = encoded + plain.at(index) + plain.at(index) + plain.at(index);
-          //add one to index
-          index++;
-          //if the index is bigger than plain length then break
-          if (index > plain.length()-1)   //REVIEW: What would be the best fix for this
-            break;
-        }
-        //add figvalue to encoded
-        encoded = encoded + figvalue;
-        //set figfound to true
+        encoded = this->findDigit(index, plain, encoded, figvalue);
         figfound = true;
-        //index++;
       }
       //if code was found in the map then
       //this will find if it is a code word
@@ -67,37 +50,14 @@ std::string Crypto::encode(std::string tableid, std::string plain)
       //instead of a for loop of code
       else if(codevalue != "null" && figfound != true)
       {
-        //loop till codevalue is found
-        for(const auto& foo : code)
-        {
-          //put the length of the current code word in codelength
-          codelength = foo.first.length();
-          //put the string from plain starting at index wih a length of
-          //codelength in temp
-          temp = plain.substr(index, codelength);
-
-          //if the selected range is equal to the codeword then
-          if(foo.first == temp)
-          {
-            //add codevalue and the value of the codeword te encoded
-            encoded = encoded + codevalue + foo.second;
-
-            //then set cod found to true
-            codefound = true;
-
-            //change the index to reflect the new index position
-            index+=codelength;
-
-            //break out of the loop
-            break;
-          }
-        }
+      	encoded = this -> findCode(index, plain, encoded, codefound, codevalue);
       }
 
       //if a code word was found and a figure was found skip this
       if(codefound == false && figfound == false)
       {
-        //get the letter at the index position
+	encoded = this -> findLetter(index, plain, encoded);
+        /*//get the letter at the index position
         temp = plain.at(index);
         //find the letter in temp and put in got
         got = table.find (temp);
@@ -115,7 +75,7 @@ std::string Crypto::encode(std::string tableid, std::string plain)
         }
         //if end was found then throw 5 to protect against issues
         else
-          throw 5;
+          throw 5;*/
       }
       //set codefound to false
       codefound = false;
