@@ -56,7 +56,8 @@ std::string Crypto::encode(std::string tableid, std::string plain)
       //if a code word was found and a figure was found skip this
       if(codefound == false && figfound == false)
       {
-        //get the letter at the index position
+	encoded = this -> findLetter(index, plain, encoded);
+        /*//get the letter at the index position
         temp = plain.at(index);
         //find the letter in temp and put in got
         got = table.find (temp);
@@ -74,7 +75,7 @@ std::string Crypto::encode(std::string tableid, std::string plain)
         }
         //if end was found then throw 5 to protect against issues
         else
-          throw 5;
+          throw 5;*/
       }
       //set codefound to false
       codefound = false;

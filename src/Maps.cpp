@@ -96,3 +96,29 @@ std::string Crypto::findCode(int &index, std::string plain, std::string encoded,
         }
 	return encoded;
 }
+
+std::string Crypto::findLetter(int &index, std::string plain, std::string encoded)
+{
+	std::unordered_map<std::string, std::string>::const_iterator got;
+	std::string temp;
+        //get the letter at the index position
+        temp = plain.at(index);
+        //find the letter in temp and put in got
+        got = table.find (temp);
+
+        //if end is not found meaning that the search did not reach the end of the
+        //map then
+        if(got != table.end())
+        {
+          //add the number at the second position of got to encoded and place the
+          //result in encoded
+          encoded = encoded + got->second;
+
+          //add one to index
+          index++;
+        }
+        //if end was found then throw 5 to protect against issues
+        else
+          throw 5;
+	return encoded;
+}

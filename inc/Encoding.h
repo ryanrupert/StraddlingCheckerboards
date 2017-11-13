@@ -33,7 +33,7 @@ private:
   //below are the modular encoding functions
   std::string findDigit(int &index, std::string plain, std::string encoded, std::string figvalue);
   std::string findCode(int &index, std::string plain, std::string encoded, bool &codefound, std::string codevalue);
-  //void findLetter(int index);
+  std::string findLetter(int &index, std::string plain, std::string encoded);
   //below are the modular decoding functions
   //bool findFig(int index);
   //void findCode(int index);
