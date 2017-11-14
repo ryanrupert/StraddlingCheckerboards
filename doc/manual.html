@@ -88,6 +88,79 @@
         <h1 id="tables">Tables</h1>
         The table is simply the list of letters that are paired to a number.
         You can use any table in the table.xml document as long as the language you are using supports that table.
+
+        <h1 id="functions">Functions</h1>
+        Here is a list of the public members for this object.
+        <table>
+            <tr>
+                <td>Member</td>
+                <td>Purpose</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::encode">encode</a></td>
+                <td>This member encodes text</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::decode">decode</a></td>
+                <td>This member will decode cipher text</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::setLang">setLang</a></td>
+                <td>This member will set the language of the object</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::getLang">getLang</a></td>
+                <td>This member will get the objects current language</td>
+            </tr>
+        </table>
+
+        <h2 id="Crypto::encode">encode</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                std::string Crypto::encode(std::string tableid, std::string plain);
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>tableid</em> - String with the name of the table to use for encoding.
+        <br />
+        <em>plain</em> - String with the plain text to be encoded
+        <h3>Return Value</h3>
+        String that contains the encoded text
+
+        <h2 id="Crypto::decode">decode</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                std::string Crypto::decode(std::string tableid, std::string encoded);
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>tableid</em> - String with the name of the table to use for encoding.
+        <br />
+        <em>encoded</em> - String with the plain text to be encoded
+        <h3>Return Value</h3>
+        String of the plain text
+
+        <h2 id="Crypto::setLang">setLang</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                void Crypto::setLang(const char *language);
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>language</em> - Char with the language code to set the object to.
+        <h3>Return Value</h3>
+        none
+
+        <h2 id="Crypto::getLang">getLang</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                char* Crypto::getLang();
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>none</em>
+        <h3>Return Value</h3>
+        Returns char pointer to the current language
         </p>
     </body>
 </html>
