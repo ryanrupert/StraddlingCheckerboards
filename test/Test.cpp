@@ -1,64 +1,46 @@
-#include <iostream>
-#include <unordered_map>
-#include <string>
-#include <stdlib.h>
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
+#include "Encoding.h"
 
-const std::unordered_map<std::string, std::string> ct1 = {
-  {"CONTROL","6"},
-  {"COE","0"},
-  {"A","1"},
-  {"E","2"},
-  {"I","3"},
-  {"N","4"},
-  {"O","5"},
-  {"T","6"},
-  {"B","70"},
-  {"C","71"},
-  {"D","72"},
-  {"F","73"},
-  {"G","74"},
-  {"H","75"},
-  {"J","76"},
-  {"K","77"},
-  {"L","78"},
-  {"M","79"},
-  {"P","80"},
-  {"Q","81"},
-  {"R","82"},
-  {"S","83"},
-  {"U","84"},
-  {"V","85"},
-  {"W","86"},
-  {"X","87"},
-  {"Y","88"},
-  {"Z","89"},
-  {"FIG","90"},
-  {".","91"},
-  {":","92"},
-  {"'","93"},
-  {"(","94"},
-  {")","94"},
-  {"+","95"},
-  {"-","96"},
-  {"=","97"},
-  {"REQ","98"},
-  {" ","99"}};
-
-int main()
+TEST_CASE("English encode")
 {
-  int singlelimit = 0;
-  std::string temp;
-  std::unordered_map<std::string, std::string>::const_iterator got;
-  got = ct1.find("CONTROL");
-  if(got != ct1.end())
-  {
-    temp = got->second;
-    singlelimit = atoi(temp.c_str());
-  }
-  else
-    std::cout << "error" << std::endl;
+	Crypto crypto;
+	crypto.setLang("EN");
+	CHECK(crypto.encode("CT1", "TEST") == "62836");
+	CHECK(crypto.encode("CT1", "A") == "1");
+	CHECK(crypto.encode("CT1", "B") == "70");
+	//CHECK(crypto.encode("CT1", "REQ") == "98");
+	CHECK(crypto.encode("CT1", "VIM") == "85379");
+}
 
-  std::cout << "singlelimit is: " << singlelimit << std::endl;
-  std::cin.get();
-  return 0;
+TEST_CASE("English encode codepage")
+{
+	Crypto crypto;
+	crypto.setLang("EN");
+	CHECK(crypto.encode("CT1", "HELLO") == "0956");
+	CHECK(crypto.encode("CT1", "ABORT") == "0000");
+}
+
+TEST_CASE("German encode" * doctest::should_fail())
+{
+	Crypto crypto;
+	crypto.setLang("EN");
+	CHECK(crypto.encode("CT1", "ß") == "62");
+	CHECK(crypto.encode("CT1", "Ä") == "61");
+	CHECK(crypto.encode("CT1", "Ö") == "63");
+	CHECK(crypto.encode("CT1", "Ü") == "64");
+}
+
+TEST_CASE("Spanish encode" * doctest::should_fail())
+{
+	Crypto crypto;
+	crypto.setLang("ES");
+	CHECK(crypto.encode("CT1", "Á") == "61");
+	CHECK(crypto.encode("CT1", "É") == "62");
+	CHECK(crypto.encode("CT1", "Í") == "63");
+	CHECK(crypto.encode("CT1", "Ó") == "64");
+	CHECK(crypto.encode("CT1", "Ú") == "65");
+	CHECK(crypto.encode("CT1", "Ñ") == "66");
+	CHECK(crypto.encode("CT1", "¡") == "67");
+	CHECK(crypto.encode("CT1", "¿") == "68");
 }
