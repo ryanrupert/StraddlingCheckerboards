@@ -24,7 +24,7 @@ TEST_CASE("English encode codepage")
 TEST_CASE("German encode" * doctest::should_fail())
 {
 	Crypto crypto;
-	crypto.setLang("EN");
+	crypto.setLang("DE");
 	CHECK(crypto.encode("CT1", "ß") == "62");
 	CHECK(crypto.encode("CT1", "Ä") == "61");
 	CHECK(crypto.encode("CT1", "Ö") == "63");
