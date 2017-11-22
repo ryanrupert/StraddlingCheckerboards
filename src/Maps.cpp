@@ -12,7 +12,7 @@ Crypto::Crypto()
 Crypto::Crypto(std::string file)
 {
   pugi::xml_parse_result result;
-  result = doc.load_file(file);
+  result = doc.load_file(file.c_str());
 }
 Crypto::Crypto(const char *language)
 {
@@ -22,8 +22,8 @@ Crypto::Crypto(const char *language)
 }
 Crypto::Crypto(std::string file, const char *language)
 {
-   pugi::xml_parser_result result;
-   result = doc.load_file(file);
+   pugi::xml_parse_result result;
+   result = doc.load_file(file.c_str());
    this->setLang(language);
 }
 
