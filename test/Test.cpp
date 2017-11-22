@@ -9,8 +9,8 @@ TEST_CASE("English encode")
 	CHECK(crypto.encode("CT1", "TEST") == "62836");
 	CHECK(crypto.encode("CT1", "A") == "1");
 	CHECK(crypto.encode("CT1", "B") == "70");
-	//CHECK(crypto.encode("CT1", "REQ") == "98");
 	CHECK(crypto.encode("CT1", "VIM") == "85379");
+	CHECK(crypto.encode("CT1", "HOW ARE YOU.") == "75586991822998858491");
 }
 
 TEST_CASE("English encode codepage")
