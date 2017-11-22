@@ -46,3 +46,20 @@ TEST_CASE("Spanish encode" * doctest::should_fail())
 	CHECK(crypto.encode("CT1", "¡") == "67");
 	CHECK(crypto.encode("CT1", "¿") == "68");
 }
+
+TEST_CASE("getLang test")
+{
+	std::string temp; 
+	Crypto crypto;
+	crypto.setLang("EN");
+	temp = crypto.getLang();
+	CHECK(temp == "EN");
+
+	crypto.setLang("DE");
+	temp = crypto.getLang();
+	CHECK(temp == "DE");
+	
+	crypto.setLang("ES");
+	temp = crypto.getLang();
+	CHECK(temp == "ES");
+}
