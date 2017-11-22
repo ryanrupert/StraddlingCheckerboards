@@ -19,6 +19,8 @@ TEST_CASE("English encode codepage")
 	crypto.setLang("EN");
 	CHECK(crypto.encode("CT1", "HELLO") == "0956");
 	CHECK(crypto.encode("CT1", "ABORT") == "0000");
+	CHECK(crypto.encode("CT1", "ACCEPT") == "0019");
+	CHECK(crypto.encode("CT1", "CHANGE") == "0145");
 }
 
 TEST_CASE("German encode" * doctest::should_fail())
