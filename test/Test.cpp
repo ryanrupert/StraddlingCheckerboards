@@ -13,6 +13,14 @@ TEST_CASE("English encode")
 	CHECK(crypto.encode("CT1", "HOW ARE YOU.") == "75586991822998858491");
 }
 
+TEST_CASE("English decode")
+{
+	Crypto crypto;
+	crypto.setLang("EN");
+	CHECK(crypto.decode("CT1", "1") == "A");
+	CHECK(crypto.decode("CT1", "62836") == "TEST");
+}
+
 TEST_CASE("English encode codepage")
 {
 	Crypto crypto;
