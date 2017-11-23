@@ -25,6 +25,7 @@
                 <li>Decode.cpp</li>
             </ul>
         </p>
+        <hr />
 
         <h1>Starting</h1>
         <p>
@@ -41,20 +42,25 @@
             </code>
         </pre>
         Straddling Checkerboard supports two letter language codes. The languages that it supports can be found <a href="#languages">here</a>
-        To encode a string you would use the code below. (In this document the table I will be using is CT1 for the table. <a href="#tables">More Info</a>).
+        To encode a string you would use the code below. (In this document I will be using CT1 as the table. <a href="#tables">More Info</a>).
         <pre style="background: #f8f8f8">
             <code>
                 encoded_text = obj_name.Encode("CT1", "THIS IS A TEST STRING");
             </code>
         </pre>
-        Note Straddling checkerboard is currently case sensitive. And will only except capital letters.
+        NOTE: Straddling checkerboard is currently case sensitive. And will only except capital letters.
+        <br />
+        <br />
+        <br />
         To decode a string you would use the code below.
          <pre style="background: #f8f8f8">
             <code>
                 plain_text = obj_name.Encode("CT1", "62836");
             </code>
         </pre>
-        Note spaces are not allowed in the text going in for decoding. And the string going in for decoding may only be numbers.
+        NOTE: Spaces are not allowed in the text going in for decoding. And the string going in for decoding may only be numbers.
+        </p>
+        <hr />
 
         <h1 id="languages">Languages</h1>
         Current and future languages are shown below
@@ -75,19 +81,23 @@
                 <td>German</td>
                 <td>DE</td>
                 <td>No</td>
-                <td>No strictly because it isn't working on windows and is untested on other operating systems</td>
+                <td>'No', strictly because it isn't working on windows and is untested on other operating systems</td>
             </tr>
             <tr>
                 <td>Spanish</td>
                 <td>ES</td>
                 <td>No</td>
-                <td>No strictly because it isn't working on windows and is untested on other operating systems</td>
+                <td>'No', strictly because it isn't working on windows and is untested on other operating systems</td>
             </tr>
         </table>
+        <hr />
 
         <h1 id="tables">Tables</h1>
+        <p>
         The table is simply the list of letters that are paired to a number.
         You can use any table in the table.xml document as long as the language you are using supports that table.
+        </p>
+        <hr />
 
         <h1 id="functions">Functions</h1>
         Here is a list of the public members for this object.
@@ -106,7 +116,7 @@
             </tr>
             <tr>
                 <td><a href="#Crypto::setLang">setLang</a></td>
-                <td>This member will set the language of the object</td>
+                <td>This member sets the language of the object</td>
             </tr>
             <tr>
                 <td><a href="#Crypto::getLang">getLang</a></td>
@@ -136,7 +146,7 @@
         <h3>Parameters</h3>
         <em>tableid</em> - String with the name of the table to use for encoding.
         <br />
-        <em>encoded</em> - String with the plain text to be encoded
+        <em>encoded</em> - String with the cipher text to be decoded
         <h3>Return Value</h3>
         String of the plain text
 
