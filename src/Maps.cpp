@@ -51,8 +51,20 @@ void Crypto::getTable(std::string tableid)
   //before looping again set item to the next child
   for(pugi::xml_node item = current.first_child(); item; item = item.next_sibling())
   {
+  	std::string temp;
     //put the character and the num value in the correct map depending on the table id
-    (tableid == "CODE") ? code.insert(std::make_pair(item.text().as_string(), item.attribute("Num").value())) : table.insert(std::make_pair(item.text().as_string(), item.attribute("Num").value()));
+    if (tableid == "CODE") 
+    {
+    	temp = item.text().as_string();
+	temp = (temp == "SPC" ? " " : temp);
+	code.insert(std::make_pair(temp, item.attribute("Num").value()));
+    }
+    else
+    {
+    	temp = item.text().as_string();
+	temp = (temp == "SPC" ? " " : temp);
+	table.insert(std::make_pair(temp, item.attribute("Num").value()));
+    }
   }
 }
 
