@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+        <title>Straddling Checkerboards</title>
+    </head>
+    <body>
+        <h1>Straddling Checkerboards</h1>
+        <b>repository - <a href="https://github.com/ryanrupert/StraddlingCheckerboards">https://github.com/ryanrupert/StraddlingCheckerboards</a></b>
+        <hr />
+
+        <h1>Installing</h1>
+        <p>
+            To install Straddling Checkerboards take the files listed below and move them into your project:
+            <ul>
+                <li>Encoding.h</li>
+                <li>Maps.cpp</li>
+                <li>Encode.cpp</li>
+                <li>Decode.cpp</li>
+            </ul>
+        </p>
+        <hr />
+
+        <h1>Starting</h1>
+        <p>
+        To start create an object and name it something.
+        <pre style="background: #f8f8f8">
+            <code>
+                Crypto obj_name;
+            </code>
+        </pre>
+        Then you need to set the language for the program.
+        <pre style="background: #f8f8f8">
+            <code>
+                obj_name.setLang("EN");
+            </code>
+        </pre>
+        Straddling Checkerboard supports two letter language codes. The languages that it supports can be found <a href="#languages">here</a>
+        To encode a string you would use the code below. (In this document I will be using CT1 as the table. <a href="#tables">More Info</a>).
+        <pre style="background: #f8f8f8">
+            <code>
+                encoded_text = obj_name.Encode("CT1", "THIS IS A TEST STRING");
+            </code>
+        </pre>
+        NOTE: Straddling checkerboard is currently case sensitive. And will only except capital letters.
+        <br />
+        <br />
+        <br />
+        To decode a string you would use the code below.
+         <pre style="background: #f8f8f8">
+            <code>
+                plain_text = obj_name.Encode("CT1", "62836");
+            </code>
+        </pre>
+        NOTE: Spaces are not allowed in the text going in for decoding. And the string going in for decoding may only be numbers.
+        </p>
+        <hr />
+
+        <h1 id="languages">Languages</h1>
+        Current and future languages are shown below
+        <table>
+            <tr>
+                <th>Language</th>
+                <th>Code</th>
+                <th>Supported?</th>
+                <th>Reason</th>
+            </tr>
+            <tr>
+                <td>English</td>
+                <td>EN</td>
+                <td>Yes</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>German</td>
+                <td>DE</td>
+                <td>No</td>
+                <td>'No', strictly because it isn't working on windows and is untested on other operating systems</td>
+            </tr>
+            <tr>
+                <td>Spanish</td>
+                <td>ES</td>
+                <td>No</td>
+                <td>'No', strictly because it isn't working on windows and is untested on other operating systems</td>
+            </tr>
+        </table>
+        <hr />
+
+        <h1 id="tables">Tables</h1>
+        <p>
+        The table is simply the list of letters that are paired to a number.
+        You can use any table in the table.xml document as long as the language you are using supports that table.
+        </p>
+        <hr />
+
+        <h1 id="functions">Functions</h1>
+        Here is a list of the public members for this object.
+        <table>
+            <tr>
+                <td>Member</td>
+                <td>Purpose</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::encode">encode</a></td>
+                <td>This member encodes text</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::decode">decode</a></td>
+                <td>This member will decode cipher text</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::setLang">setLang</a></td>
+                <td>This member sets the language of the object</td>
+            </tr>
+            <tr>
+                <td><a href="#Crypto::getLang">getLang</a></td>
+                <td>This member will get the objects current language</td>
+            </tr>
+        </table>
+
+        <h2 id="Crypto::encode">encode</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                std::string Crypto::encode(std::string tableid, std::string plain);
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>tableid</em> - String with the name of the table to use for encoding.
+        <br />
+        <em>plain</em> - String with the plain text to be encoded
+        <h3>Return Value</h3>
+        String that contains the encoded text
+
+        <h2 id="Crypto::decode">decode</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                std::string Crypto::decode(std::string tableid, std::string encoded);
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>tableid</em> - String with the name of the table to use for encoding.
+        <br />
+        <em>encoded</em> - String with the cipher text to be decoded
+        <h3>Return Value</h3>
+        String of the plain text
+
+        <h2 id="Crypto::setLang">setLang</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                void Crypto::setLang(const char *language);
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>language</em> - Char with the language code to set the object to.
+        <h3>Return Value</h3>
+        none
+
+        <h2 id="Crypto::getLang">getLang</h2>
+        <pre style="background: #f8f8f8">
+            <code>
+                char* Crypto::getLang();
+            </code>
+        </pre>
+        <h3>Parameters</h3>
+        <em>none</em>
+        <h3>Return Value</h3>
+        Returns char pointer to the current language
+        </p>
+    </body>
+</html>
