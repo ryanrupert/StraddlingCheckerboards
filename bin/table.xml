@@ -140,7 +140,7 @@
     <node Num="96">-</node>
     <node Num="97">=</node>
     <node Num="98">REQ</node>
-    <node Num="99"> </node>
+    <node Num="99">SPC</node>
   </CT1>
   <CT1 Lang="DE">
     <node Num="5">CONTROL</node>
@@ -185,7 +185,7 @@
     <node Num="96">-</node>
     <node Num="97">=</node>
     <node Num="98">REQ</node>
-    <node Num="99"> </node>
+    <node Num="99">SPC</node>
   </CT1>
   <CT1 Lang="ES">
     <node Num="5">CONTROL</node>
@@ -234,7 +234,7 @@
     <node Num="96">-</node>
     <node Num="97">=</node>
     <node Num="98">REQ</node>
-    <node Num="99"> </node>
+    <node Num="99">SPC</node>
   </CT1>
   <CT37 Lang="EN">
     <node Num="6">CONTROL</node>
@@ -265,7 +265,7 @@
     <node Num="87">Y</node>
     <node Num="88">Z</node>
     <node Num="89">FIG</node>
-    <node Num="90"> </node>
+    <node Num="90">SPC</node>
     <node Num="91">.</node>
     <node Num="92">,</node>
     <node Num="93">'</node>
