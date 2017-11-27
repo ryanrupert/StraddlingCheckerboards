@@ -36,6 +36,16 @@ TEST_CASE("English encode codepage")
 	CHECK(crypto.encode("CT1", "CHANGE") == "0145");
 }
 
+TEST_CASE("German encode")
+{
+	Crypto crypto;
+	crypto.setLang("DE");
+	CHECK(crypto.encode("CT1", "TEST") == "8326083");
+	CHECK(crypto.encode("CT1", "A") == "1");
+	CHECK(crypto.encode("CT1", "B") == "70");
+	CHECK(crypto.encode("CT1", "VIM") == "85379");
+}
+
 TEST_CASE("German encode" * doctest::should_fail())
 {
 	Crypto crypto;
