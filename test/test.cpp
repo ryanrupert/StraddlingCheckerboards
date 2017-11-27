@@ -11,14 +11,19 @@ TEST_CASE("English encode")
 	CHECK(crypto.encode("CT1", "B") == "70");
 	CHECK(crypto.encode("CT1", "VIM") == "85379");
 	CHECK(crypto.encode("CT1", "HOW ARE YOU.") == "75586991822998858491");
+	CHECK(crypto.encode("CT1", "A YOUNG MAN NAMED JOHN RECEIVED A PARROT AS A GIFT.") == "19988584474997914994179272997657549906867299199801828256991839919974373691");
 }
 
 TEST_CASE("English decode")
 {
 	Crypto crypto;
 	crypto.setLang("EN");
-	CHECK(crypto.decode("CT1", "1") == "A");
 	CHECK(crypto.decode("CT1", "62836") == "TEST");
+	CHECK(crypto.decode("CT1", "1") == "A");
+	CHECK(crypto.decode("CT1", "70") == "B");
+	CHECK(crypto.decode("CT1", "85379") == "VIM");
+	CHECK(crypto.decode("CT1", "75586991822998858491") == "HOW ARE YOU.");
+	CHECK(crypto.decode("CT1", "19988584474997914994179272997657549906867299199801828256991839919974373691") == "A YOUNG MAN NAMED JOHN RECEIVED A PARROT AS A GIFT.");
 }
 
 TEST_CASE("English encode codepage")
