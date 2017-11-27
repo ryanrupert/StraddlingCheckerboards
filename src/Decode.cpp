@@ -43,6 +43,7 @@ std::string Crypto::decode(std::string tableid, std::string encoded)
     singlelimit = atoi(got->second.c_str());
     //add one to singlelimit then place it in singlelimitmod
     singlelimitmod = singlelimit + 1;
+    table.erase("CONTROL");
   }
   //if control is not found then throw an error
   else
