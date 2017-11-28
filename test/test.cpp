@@ -34,6 +34,8 @@ TEST_CASE("English encode codepage")
 	CHECK(crypto.encode("CT1", "ABORT") == "0000");
 	CHECK(crypto.encode("CT1", "ACCEPT") == "0019");
 	CHECK(crypto.encode("CT1", "CHANGE") == "0145");
+	CHECK(crypto.encode("CT1", "FAILED") == "0334");
+	CHECK(crypto.encode("CT1", "LOCATE") == "0451");
 }
 
 TEST_CASE("German encode")
@@ -44,6 +46,8 @@ TEST_CASE("German encode")
 	CHECK(crypto.encode("CT1", "A") == "1");
 	CHECK(crypto.encode("CT1", "B") == "70");
 	CHECK(crypto.encode("CT1", "VIM") == "85379");
+	CHECK(crypto.encode("CT1", "HOW ARE YOU.") == "758086991529988808491");
+	CHECK(crypto.encode("CT1", "A YOUNG MAN NAMED JOHN RECEIVED A PARROT AS A GIFT.") == "1998880844749979149941792729976807549952712385272991998115580839916099199743738391");
 }
 
 TEST_CASE("German encode" * doctest::should_fail())
