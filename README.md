@@ -17,31 +17,10 @@ There are no prerequisites for this class.
 Place all the files for this class in your project folder.
 
 ### Code Example
-To make the class object use
-```C++
-Crypto obj_name; //this creates the class object where obj_name is the name you want to give the object
-```
-To Encode here is how you do it
-```C++
-obj_name.Encode("CTxx", string_to_encode); //this will encode string_to_encode with CTxx
-```
-To decode here is how you do it
-```C++
-obj_name.Decode("CTxx", string_to_decode); //this will pass the checkerboard CT37 with the string string_to_decode into the function for decoding
-```
-To set the language here is how you do it
-```C++
-obj_name.setLang("lang"); //this will set the language to what ever is put where lang is
-```
-To find the current language setting use
-```C++
-obj_name.getLang();
-```
-Replace the xx in CTxx with the number of the encoding you want
-
+See the documentation for code examples
 
 ## Built With
-This was built with pugixml for the xml parsing.
+This was built with pugixml for the xml parsing. And is included in this repository under lib.
 
 ## Motivation
 The motivation for this project was to build a encoder and decoder class for a
@@ -58,20 +37,7 @@ straddling checkerboard.
 * The display of Accented characters such as `ß`, `Ö`, `Á` does not work. The character's are read from the file as UTF-8 but windows uses Code page 437.
 
 ## History
-4/27/17
-
-Made the straddling checkerboards dynamic by placing them in a xml file.
-
-3/23/17
-
-Have 2 straddling checkerboards hard coded into the class. Only supports English
-currently.
-
-With these two tables:
-
-[CT-1](http://users.telenet.be/d.rijmenants/pics/aeinot.gif)
-
-[CT-37](http://users.telenet.be/d.rijmenants/pics/ct37.gif)
+View CHANGELOG.md for all the important changes made and future changes
 
 ## Contributing
 
