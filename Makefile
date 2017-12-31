@@ -43,7 +43,7 @@ $(LIBDIR)/%.o: $(LIBDIR)/%.cpp
 
 #build the program with debug symbols
 debug: clean
-CFLAG += -g
+debug: CFLAG += -g
 debug: all
 
 #build everything and create the unit test executable
@@ -58,7 +58,7 @@ prod:
 	LFLAG += -static-libgcc -static-libstdc++
 prod: all
 
-.PHONY: clean all src dep debug test testsrc
+.PHONY: clean all src dep debug test
 
 clean:
 	rm -f obj/*.o
