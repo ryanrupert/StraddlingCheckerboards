@@ -10,6 +10,7 @@ SRCDIR := src
 #LIB := $(shell find $(LIBDIR) -type f -name *.cpp)
 LIB := pugixml.cpp
 SRC := Decode.cpp Encode.cpp Maps.cpp Source.cpp
+#this holds the file containing the main function
 MAIN := obj/Source.o
 OUT ?= a
 OBJ := $(SRC:.cpp=.o)
